@@ -1,0 +1,16 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Hide default cursor */
+* {
+  cursor: none;
+}
+
+/* Show default cursor for input elements */
+input, 
+button, 
+textarea, 
+select {
+  cursor: auto;
+}
