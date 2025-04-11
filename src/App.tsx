@@ -154,7 +154,7 @@ const achievements = [
   "🤷‍♂️ <strong>Got rejected for a hackathon because they “didn’t get the idea”...</strong> My mom said it was brilliant though.",
   "🔋💥 <strong>Made an MPPT charger… forgot the battery polarity...</strong> It charged… my patience.",
   "♨️ <strong>Fried a 7805 regulator because I forgot to use a heatsink...</strong> It got so hot it almost gave me chai.",
-  "💡📺 Created an IR remote but used TV remote’s ‘Volume Up’ as ON switch... My dad kept turning off the lights while changing channels.",
+  "💡📺 <strong>Created an IR remote but used TV remote’s ‘Volume Up’ as ON switch</strong>... My dad kept turning off the lights while changing channels.",
   "😵‍💫 <strong>Entered wrong room for endsem...</strong> Sat through half an exam before realizing it wasn’t my paper.",
   "📉 <strong>Got a C in a subject I thought I aced...</strong> And the subject is nun other than Digital Communication",
 ];
