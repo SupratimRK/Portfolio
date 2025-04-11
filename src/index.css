@@ -1,16 +1,48 @@
+/* stylelint-disable at-rule-no-unknown */
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
-/* Hide default cursor */
-* {
-  cursor: none;
+/* Removing custom cursor */
+/* Add this to your global CSS file (e.g., index.css) */
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
 }
 
-/* Show default cursor for input elements */
-input, 
-button, 
-textarea, 
-select {
-  cursor: auto;
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
+
+/* Base animation class */
+.animate-on-load {
+  animation-duration: 0.8s; /* Adjust duration as needed */
+  animation-timing-function: ease-out;
+  animation-fill-mode: backwards; /* Start element in 'from' state */
+}
+
+/* Specific animations */
+.fade-in {
+  animation-name: fadeIn;
+}
+
+.fade-in-up {
+   animation-name: fadeInUp;
+}
+
+/* Example of adding delay utility classes if needed */
+.animation-delay-200 { animation-delay: 0.2s; }
+.animation-delay-400 { animation-delay: 0.4s; }
+.animation-delay-600 { animation-delay: 0.6s; }
+
+/* Add Tailwind utility support if not already present */
+/* You might need PostCSS configuration for this if not using a framework */
+/* Alternatively, define variants directly in Tailwind config */
