@@ -51,7 +51,6 @@ Feeling brave? Want to see the tangled wires behind the curtain? Fine, but don't
 
 1.  **Clone This Monster:**
     ```bash
-    # Swap 'your-repo-name' with the repo's actual name, obviously.
     git clone https://github.com/SupratimRK/portfolio.git
     cd portfolio
     ```
