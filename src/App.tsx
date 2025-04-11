@@ -31,8 +31,7 @@ import {
   BrainCircuit, // Subtle Icon
   Thermometer, // Subtle Icon
   Settings, // Subtle Icon
-  Briefcase, // Keep for potential future use?
-  GraduationCap // Keep for potential future use?
+  Trophy // Keep for potential future use?
 } from "lucide-react";
 import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter';
 import { atomDark } from 'react-syntax-highlighter/dist/esm/styles/prism';
@@ -155,6 +154,7 @@ const achievements = [
   "🤷‍♂️ <strong>Got rejected for a hackathon because they “didn’t get the idea”...</strong> My mom said it was brilliant though.",
   "🔋💥 <strong>Made an MPPT charger… forgot the battery polarity...</strong> It charged… my patience.",
   "♨️ <strong>Fried a 7805 regulator because I forgot to use a heatsink...</strong> It got so hot it almost gave me chai.",
+  "💡📺 Created an IR remote but used TV remote’s ‘Volume Up’ as ON switch... My dad kept turning off the lights while changing channels.",
   "😵‍💫 <strong>Entered wrong room for endsem...</strong> Sat through half an exam before realizing it wasn’t my paper.",
   "📉 <strong>Got a C in a subject I thought I aced...</strong> And the subject is nun other than Digital Communication",
 ];
@@ -418,18 +418,19 @@ export default function App() {
                 <p className="text-lg lg:text-xl text-orange-300 font-medium flex items-center gap-2">
                   <Coffee className="w-5 h-5 inline-block" /> Chai Lover & Aspiring Engineer
                 </p>
-                <h2 className="text-xl lg:text-3xl text-gray-300 leading-relaxed lg:leading-loose pt-2">
-                  ⚡ ECE Student & Electronics Tinkerer <br className="hidden sm:block md:hidden lg:block" />
-                  🧠 Analog Aficionado & Digital Dabbler <br className="hidden sm:block md:hidden lg:block" />
-                  💻 Web Dev Explorer & Code Wrangler <br className="hidden sm:block md:hidden lg:block" />
-                  <span className="text-yellow-300">🛠️ Chief Family Tech Support Officer</span>
+                <h2 className="text-lg lg:text-2xl text-gray-300 leading-relaxed lg:leading-loose pt-2">
+                  ⚡ EC Student with <span className="italic text-amber-200/90">log 1</span> Social Life<br className="hidden sm:block md:hidden lg:block" />
+                  🌐 Web Dev & <span className="italic text-amber-200/90">Useless</span> php Programmer<br className="hidden sm:block md:hidden lg:block" />
+                  📽️ Video Editor & <span className="italic text-amber-200/90">Memes</span> Maker<br className="hidden sm:block md:hidden lg:block" />
+                  👨‍🔧 Tech Support for <span className="text-amber-200/90">Friends and Family</span>
                 </h2>
+
                 <p className="text-base lg:text-lg text-amber-200/90 italic pt-3">
-                  "Powered by chai ☕ and questionable life choices... mostly caffeine though." 🫠
+                  ~ Powered by chai ☕ and questionable life choices... mostly caffeine though. 🫠
                 </p>
               </div>
               {/* Larger Badges with updated logos */}
-              <div className="mt-6 flex flex-col gap-2 items-start">
+              <div className="mt-4 mb-4 flex flex-col gap-3 items-start">
                 <a href="https://supratim.netlify.app" target="_blank" rel="noopener noreferrer" className="transform hover:scale-110 transition-transform duration-200"> <img src="https://img.shields.io/badge/Portfolio-Visit%20Me!-blue?style=for-the-badge&logo=google-chrome&logoColor=white" alt="Portfolio Badge" /> </a>
                 <a href="mailto:supratimrk@outlook.com" target="_blank" rel="noopener noreferrer" className="transform hover:scale-110 transition-transform duration-200"> <img src="https://img.shields.io/badge/Email-Say%20Hello!-red?style=for-the-badge&logo=gmail&logoColor=white" alt="Email Badge" /> </a>
                 <a href="https://twitter.com/supratimrk" target="_blank" rel="noopener noreferrer" className="transform hover:scale-110 transition-transform duration-200"> <img src="https://img.shields.io/badge/Twitter-Follow%20My%20Ramblings-1DA1F2?style=for-the-badge&logo=x&logoColor=white" alt="Twitter Badge" /> </a>
@@ -438,7 +439,7 @@ export default function App() {
                 <a href="#" onClick={(e) => e.preventDefault()} className="transform hover:scale-110 transition-transform duration-200"> <img src="https://img.shields.io/badge/Facebook-Nope!-1877F2?style=for-the-badge&logo=facebook&logoColor=white" alt="Facebook Badge" /> </a>
                 <a href="#" onClick={(e) => e.preventDefault()} className="transform hover:scale-110 transition-transform duration-200"> <img src="https://img.shields.io/badge/Instagram-Still%20No-E4405F?style=for-the-badge&logo=instagram&logoColor=white" alt="Instagram Badge" /> </a>
                 {/* Updated LinkedIn badge */}
-                <a href="#" onClick={(e) => e.preventDefault()} className="transform hover:scale-110 transition-transform duration-200"> <img src="https://img.shields.io/badge/LinkedIn-Maybe%20Someday...-0077B5?style=for-the-badge&logo=linkedin&logoColor=white" alt="LinkedIn Badge" /> </a>
+                <a href="#" onClick={(e) => e.preventDefault()} className="transform hover:scale-110 transition-transform duration-200"> <img src="https://img.shields.io/badge/LinkedIn-Maybe%20Someday...-0077B5?style=for-the-badge&logo=hackerone&logoColor=white" alt="LinkedIn Badge" /> </a>
                 {/* Updated Snapchat badge */}
                 <a href="#" onClick={(e) => e.preventDefault()} className="transform hover:scale-110 transition-transform duration-200"> <img src="https://img.shields.io/badge/Snapchat-Definitely%20Not-FFFC00?style=for-the-badge&logo=snapchat&logoColor=white" alt="Snapchat Badge" /> </a>
               </div>
@@ -480,7 +481,7 @@ export default function App() {
               <ul className="list-none space-y-3.5">
                 {whatIDo.map((item, index) => (
                   <li key={index} className="text-gray-300 text-base flex items-start">
-                    <span className="text-green-500 mr-2.5 mt-1 scale-110 shrink-0">✔</span>
+                    <span className="text-green-500 mr-2.5 mt-1 scale-110 shrink-0"><Activity/></span>
                     <span dangerouslySetInnerHTML={{ __html: formatMarkdown(item) }} />
                   </li>
                 ))}
@@ -489,11 +490,11 @@ export default function App() {
 
             {/* Right Card: Achievements / Fails */}
             <div className="w-full md:w-[40%] bg-black/60 p-8 rounded-2xl border border-white/10 shadow-md hover:shadow-red-500/20 transition-shadow duration-300">
-              <h3 className="text-2xl font-semibold mb-5 flex items-center gap-2 text-red-400"><X className="w-6 h-6" /> Epic Learning Opportunities</h3>
+              <h3 className="text-2xl font-semibold mb-5 flex items-center gap-2 text-amber-200/90"><Trophy className="w-6 h-6" /> Epic Achievements</h3>
               <ul className="list-none space-y-4">
                 {achievements.map((ach, index) => (
                   <li key={index} className="text-gray-300 text-base flex items-start">
-                    <span className="text-red-500 mr-2.5 mt-1 scale-110 shrink-0">✘</span>
+                    <span className="text-amber-200/90 mr-2.5 mt-1 scale-110 shrink-0"><Sparkles /></span>
                     {/* Render BOLDED achievement text with emojis */}
                     <span dangerouslySetInnerHTML={{ __html: ach }} />
                   </li>
@@ -515,7 +516,7 @@ export default function App() {
         <section id="education" className="mb-24 px-[8%]">
           <div className="bg-white/5 p-8 rounded-2xl backdrop-blur-sm border border-white/10 shadow-lg">
             <h2 className="text-4xl font-bold text-center mb-10 text-purple-300 flex items-center justify-center gap-3">
-              <BookOpen className="w-8 h-8" /> The Lore: Academic Chapters
+              <span className="w-8 h-8" /> The Lore: Academic Chapters<School/>
             </h2>
             <div className="flex flex-wrap gap-8 justify-center">
               {education.map((edu, index) => {
