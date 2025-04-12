@@ -140,7 +140,7 @@ const whatIDo = [
   "🔋 Build **MPPT-based solar charger** that actually *work*, unlike my diet plan. 🍴(That too worked for first couple of days.)",
   "🎛️ Design sleek PCBs on **KiCad** with **zero flying wires** (okay, almost) and they end up being a paperweight.",
   "💻 Create web apps with React + Firebase that don’t crash… most of the time.",
-  "🌱 Built an **auto plant watering system**. Plants are now thriving. My social life? log 1",
+  "🌱 Built an **auto plant watering system**. Plants are now thriving. My social life? log<sub>10</sub> 1 🥲",
   `👨‍🔧 Serve as **family tech support**: <br>
     “Maa ar phone ar IMEI ura gacha” → fixed 😏<br>
     “Baba ar laptop slow cholcha” → formatted 😎<br>
@@ -421,7 +421,7 @@ export default function App() {
                   <Coffee className="w-5 h-5 inline-block" /> Chai Lover & Aspiring Engineer
                 </p>
                 <h2 className="text-lg lg:text-2xl text-gray-300 leading-relaxed lg:leading-loose pt-2">
-                  ⚡ EC Student with <span className="italic text-amber-200/90">log 1</span> Social Life<br className="hidden sm:block md:hidden lg:block" />
+                  ⚡ EC Student with <span className="italic text-amber-200/90">log<sub>10</sub> 1</span> Social Life<br className="hidden sm:block md:hidden lg:block" />
                   🌐 Web Dev & <span className="italic text-amber-200/90">Useless</span> php Programmer<br className="hidden sm:block md:hidden lg:block" />
                   📽️ Video Editor & <span className="italic text-amber-200/90">Memes</span> Maker<br className="hidden sm:block md:hidden lg:block" />
                   👨‍🔧 Tech Support for <span className="text-amber-200/90">Friends and Family</span>
@@ -580,10 +580,11 @@ export default function App() {
         {/* --- Certifications & Trainings Section --- */}
         <section id="certifications" className="mb-24 px-[8%]">
           <div className="bg-gradient-to-br from-gray-900/70 to-black/80 p-8 rounded-2xl backdrop-blur-sm border border-white/10 shadow-lg relative overflow-hidden">
-            <h2 className="text-4xl font-bold text-center mb-10 text-purple-300 flex items-center justify-center gap-3 z-10 relative">
+            <h2 className="text-4xl font-bold text-center mb-4 text-purple-300 flex items-center justify-center gap-3 z-10 relative">
               <span className="w-8 h-8" /> The Paper Trail: Only Certs, No Skills 📜
             </h2>
-            <Award aria-hidden="true" className="absolute -top-10 -left-10 w-48 h-48 text-purple-900/30 opacity-40 rotate-12 pointer-events-none" />
+            <h3 className="text-lg text-center text-purple-300 opacity-60 mb-8 z-10 relative">"All certifications are online 'cause my college only teaches how to mark 75% attendance. Offline training? Lol, do you think they would let us breathe outside campus?"</h3>
+            <Award aria-hidden="true" className="absolute -top-10 -left-10 w-48 h-48 text-purple-900/30 opacity-100 rotate-12 pointer-events-none" />
             <div className="overflow-x-auto rounded-lg border border-purple-400/30 shadow-inner shadow-purple-900/20 z-10 relative">
               <table className="w-full text-left border-collapse min-w-[650px]">
                 <thead className="bg-black/60 backdrop-blur-sm">
