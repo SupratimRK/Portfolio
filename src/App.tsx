@@ -361,16 +361,17 @@ const battleGear = [
     title: "ASUS ROG Strix G15 ⚡",
     details: [
       "⚙️ CPU: Ryzen 7 4800H (8 cores fueled by chai ☕)",
-      "🎮 GPU: Nvidia GTX 1650 (Mostly for smooth scrolling in KiCad)",
+      "🎮 GPU: Nvidia GTX 1650 (Yes! ROG still has these.)",
       "🚀 RAM: 24 GB DDR4 (Holds at least 50 Chrome tabs!)",
-      "💾 Storage: 512 GB NVMe SSD (Blink and you miss the boot screen)",
-      "💻 OS: Windows 11 & Ubuntu 22.04 (Dual-booting personality)",
+      "💾 Storage: 512 GB NVMe SSD (Boot screen? What's that?)",
+      "💻 OS: Windows 11 & Ubuntu 22.04 (Dual pain 😢)",
     ],
   },
   {
     title: "DELL Vostro 15 🐌",
     details: [
       "⚙️ CPU: Intel i3 7020U (Yess! It still works!)",
+      "🎮 GPU: Intel HD Graphics (No gaming, just browsing!)",
       "🧠 RAM: 4 GB DDR4 (Enough for a terminal... usually)",
       "💾 Storage: 120 GB SATA SSD (The little SSD that could!)",
       "🐧 OS: Ubuntu 22.04 LTS (Still kicking!)",
@@ -379,10 +380,9 @@ const battleGear = [
   {
     title: "Samsung Galaxy S23 🚀",
     details: [
-      "🧠 Processor: Snapdragon 8 Gen 2 (Probably smarter than me)",
+      "⚙️ CPU: Qualcomm® Kryo™ (Open apps with ☕)",
       "🎨 GPU: Qualcomm® Adreno™ 740 (For... scrolling faster?)",
-      "⚙️ CPU: Qualcomm® Kryo™ (Octa-core goodness)",
-      "🚀 RAM: 8 GB LPDDR5X (Smooth like butter)",
+      "🚀 RAM: 8 GB LPDDR5X (Smooth like IYKYK 👀)",
       "💾 Storage: 128 GB UFS 4.0 (Holds many, many memes)",
       "📱 OS: OneUI 7.0 / Android 15 (Living on the beta edge!)",
     ],
@@ -431,8 +431,8 @@ export default function App() {
               </div>
               {/* Larger Badges with updated logos */}
               <div className="mt-4 mb-4 flex flex-col gap-3 items-start">
-                <a href="https://supratim.netlify.app" target="_blank" rel="noopener noreferrer" className="transform hover:scale-110 transition-transform duration-200"> <img src="https://img.shields.io/badge/Portfolio-Visit%20Me!-blue?style=for-the-badge&logo=google-chrome&logoColor=white" alt="Portfolio Badge" /> </a>
-                <a href="mailto:supratimrk@outlook.com" target="_blank" rel="noopener noreferrer" className="transform hover:scale-110 transition-transform duration-200"> <img src="https://img.shields.io/badge/Email-Say%20Hello!-red?style=for-the-badge&logo=gmail&logoColor=white" alt="Email Badge" /> </a>
+                <a href="https://supratim.netlify.app" target="_blank" rel="noopener noreferrer" className="transform hover:scale-110 transition-transform duration-200"> <img src="https://img.shields.io/badge/Portfolio-You're%20Here!-blue?style=for-the-badge&logo=google-chrome&logoColor=white" alt="Portfolio Badge" /> </a>
+                <a href="mailto:supratimrk@outlook.com" target="_blank" rel="noopener noreferrer" className="transform hover:scale-110 transition-transform duration-200"> <img src="https://img.shields.io/badge/Email-Drop%20Hello!-red?style=for-the-badge&logo=gmail&logoColor=white" alt="Email Badge" /> </a>
                 <a href="https://twitter.com/supratimrk" target="_blank" rel="noopener noreferrer" className="transform hover:scale-110 transition-transform duration-200"> <img src="https://img.shields.io/badge/Twitter-Follow%20My%20Ramblings-1DA1F2?style=for-the-badge&logo=x&logoColor=white" alt="Twitter Badge" /> </a>
                 {/* Updated GitHub badge for white logo */}
                 <a href="https://github.com/SupratimRK" target="_blank" rel="noopener noreferrer" className="transform hover:scale-110 transition-transform duration-200"> <img src="https://img.shields.io/badge/GitHub-See%20My%20Code-white?style=for-the-badge&logo=github&logoColor=white" alt="GitHub Badge" /> </a>
@@ -473,7 +473,7 @@ export default function App() {
 
         {/* --- What I Do & Achievements --- */}
         <section id="whatidoachievements" className="mb-24 relative overflow-hidden min-h-[550px] md:min-h-[500px]">
-          <h2 className="text-4xl font-bold text-center mb-12 text-purple-300 px-[8%]">My Antics: Skills & Glorious Fails ✨</h2>
+          <h2 className="text-4xl font-bold text-center mb-12 text-purple-300 px-[8%]">My Antics: Skills & Glorious Achievements ✨</h2>
           <div className="flex flex-wrap md:flex-nowrap w-full px-[8%] gap-[4%] items-stretch">
             {/* Left Card: What I Do */}
             <div className="w-full md:w-[40%] bg-black/60 p-8 rounded-2xl border border-white/10 shadow-md hover:shadow-purple-500/20 transition-shadow duration-300 mb-6 md:mb-0">
@@ -516,7 +516,7 @@ export default function App() {
         <section id="education" className="mb-24 px-[8%]">
           <div className="bg-white/5 p-8 rounded-2xl backdrop-blur-sm border border-white/10 shadow-lg">
             <h2 className="text-4xl font-bold text-center mb-10 text-purple-300 flex items-center justify-center gap-3">
-              <span className="w-8 h-8" /> The Lore: Academic Chapters<School/>
+              <span className="w-8 h-8" /> The Lore: Academic Chapters 📚
             </h2>
             <div className="flex flex-wrap gap-8 justify-center">
               {education.map((edu, index) => {
@@ -579,7 +579,7 @@ export default function App() {
         <section id="certifications" className="mb-24 px-[8%]">
           <div className="bg-gradient-to-br from-gray-900/70 to-black/80 p-8 rounded-2xl backdrop-blur-sm border border-white/10 shadow-lg relative overflow-hidden">
             <h2 className="text-4xl font-bold text-center mb-10 text-purple-300 flex items-center justify-center gap-3 z-10 relative">
-              <Scroll className="w-8 h-8" /> The Paper Trail: Certs & Skills
+              <span className="w-8 h-8" /> The Paper Trail: Only Certs, No Skills 📜
             </h2>
             <Award aria-hidden="true" className="absolute -top-10 -left-10 w-48 h-48 text-purple-900/30 opacity-40 rotate-12 pointer-events-none" />
             <div className="overflow-x-auto rounded-lg border border-purple-400/30 shadow-inner shadow-purple-900/20 z-10 relative">
@@ -616,7 +616,7 @@ export default function App() {
         <section id="battlegear" className="mb-24 px-[8%]">
           <div className="bg-white/5 p-8 rounded-2xl backdrop-blur-sm border border-white/10 shadow-lg">
             <h2 className="text-4xl font-bold text-center mb-10 text-purple-300 flex items-center justify-center gap-3">
-              <Swords className="w-8 h-8" /> My Humble Arsenal
+              <span className="w-8 h-8" /> My Humble Arsenal ⚔️
             </h2>
             <div className="flex flex-wrap gap-8 justify-center">
               {battleGear.map((gear, index) => (
