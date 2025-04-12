@@ -132,17 +132,19 @@ function Navbar() {
 
 // What I Do
 const whatIDo = [
-  "🔋 Wrangling electrons in **MPPT solar circuits**. Sometimes they obey.",
-  "🎛️ Designing PCBs on **KiCad** that *aspire* to have **zero flying wires**. (Reality may vary).",
-  "💻 Conjuring web apps with **React + Firebase**. Stability is a feature, usually.",
-  "🌱 Building **auto plant watering systems** because my plants deserve better (and I'm lazy).",
-  "🧪 Prodding **saltwater batteries** into existence. Mostly they just make salty soup.",
-  "📦 Automating the mundane with **Google Apps Script**. My laziness fuels innovation!",
-  "🎨 Dabbling in graphics & video editing. Why? Because **memes** are important.",
-  "📚 Crafting **LaTeX** reports so beautiful, you *almost* forget the chaotic data inside.",
-  "🧑‍💻 Spinning up custom React apps, like that **certificate generator** everyone loved.",
-  "☕ Keeping the **soldering iron** hot and the **chai** hotter. The sacred ritual.",
-  "🛠️ Being the family's **on-call tech whisperer**. 'Have you tried turning it off and on again?'",
+  "☕ **Sips tea**, and **think about future**, Still thinking... 🤔",
+  "🧪 Experiment with **saltwater batteries**. Spoiler: they fizz, not charge.",
+  "📦 Automate stuff with **Google Apps Script**. Cuz I'm **Laydkhor** 🛌",
+  "🎨 Design **graphics and videos** for fun. I mean, who doesn’t love a good meme? 😁",
+  "📚 Write **LaTeX reports** that are more **aesthetic than my life** choices. 👀",
+  "🔋 Build **MPPT-based solar charger** that actually *work*, unlike my diet plan. 🍴(That too worked for first couple of days.)",
+  "🎛️ Design sleek PCBs on **KiCad** with **zero flying wires** (okay, almost) and they end up being a paperweight.",
+  "💻 Create web apps with React + Firebase that don’t crash… most of the time.",
+  "🌱 Built an **auto plant watering system**. Plants are now thriving. My social life? log 1",
+  `👨‍🔧 Serve as **family tech support**: <br>
+    “Maa ar phone ar IMEI ura gacha” → fixed 😏<br>
+    “Baba ar laptop slow cholcha” → formatted 😎<br>
+    “Bahi ar online class cholcha naa” → new OS installed 💀`
 ];
 
 // Achievements / Fails - With Emojis
@@ -352,7 +354,7 @@ const certifications = [
   { course: "Google Cloud Fundamentals", platform: "Coursera", duration: "4 weeks", icon: CheckCircle },
   { course: "Data Structures & Algorithms Quest", platform: "Coursera (UCSD)", duration: "4 weeks", icon: CheckCircle },
   { course: "Cisco Networking: The Basics", platform: "Cisco Networking Academy", duration: "4 weeks", icon: FileText },
-  { course: "Free CCNA Knowledge Hunt", platform: "YouTube (David Bombal)", duration: "Ongoing Quest", icon: FileText },
+  { course: "Free CCNA Knowledge Hunt", platform: "YouTube (NetworkChuck)", duration: "Ongoing Quest", icon: FileText },
 ];
 
 // Battle Gear Data - Updated Text
@@ -636,7 +638,7 @@ export default function App() {
           <div className="bg-gradient-to-r from-purple-800/40 to-pink-800/40 p-10 rounded-2xl backdrop-blur-sm text-center border border-white/10 shadow-lg hover:shadow-purple-500/30 transition-shadow duration-300">
             <h2 className="text-4xl font-bold mb-6 text-white">Let's have ☕ chai, together! (Virtually? No Problem!)</h2>
             <p className="text-gray-200 mb-8 max-w-xl mx-auto text-lg leading-relaxed">
-              Got a wild project idea? Need a partner in crime for your next electronic escapade? Or just want to debate the best chai spices? Hit me up! 👇
+            Need a partner in crime for your next electronic escapade? Wanna bitch you clg, prof. with someone? Or just want to debate the best chai? <br />Hit me up! 👇
             </p>
             <div className="flex justify-center items-center gap-6 md:gap-8 mb-10 flex-wrap">
               {[
