@@ -20,8 +20,6 @@ import {
   Atom, // Subtle icon
   Network, // Subtle Icon
   Target, // Subtle Icon
-  Scroll, // Icon for Certs Section Title
-  Swords, // Icon for Battle Gear Section Title
   FileText, // Icon for Cert items
   CheckCircle, // Icon for Cert items
   School, // Icon for Education institutions
