@@ -256,7 +256,7 @@ const ecProjects = [
     failureReason: "A trifecta of bad parts, noisy signals, and possibly cursed code. Now serves as a reminder that humility is a virtue in electronics."
   },
   {
-    title: "Smart Home? More Like 'Haunted House'",
+    title: "Smart Home? Nah, 'Haunted House'",
     icon: <Home className="w-6 h-6 text-blue-400 group-hover:animate-bounce" />, // Bounce on hover
     target: "Impress guests by controlling lights with my phone. Maybe.",
     description: "An ESP8266, relays, and a tangle of wires met Blynk/IFTTT. The goal: remote control. The reality: occasional, unpredictable obedience.",
