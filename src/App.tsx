@@ -412,7 +412,7 @@ export default function App() {
             {/* Left Card */}
             <div className="w-full md:w-[40%] bg-white/5 p-8 rounded-2xl backdrop-blur-sm flex flex-col justify-between shadow-lg border border-white/10 min-h-[500px] hover:border-purple-400/50 transition-colors duration-300 mb-6 md:mb-0">
               <div className="space-y-3">
-                <h1 className="text-5xl lg:text-7xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-purple-400 to-pink-500 leading-tight animate-fade-in">
+                <h1 className="text-5xl lg:text-7xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-amber-400 via-orange-500 to-fuchsia-600 leading-tight animate-fade-in">
                   🔌 Supratim Mondal
                 </h1>
                 <p className="text-lg lg:text-xl text-orange-300 font-medium flex items-center gap-2">
