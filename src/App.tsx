@@ -1,4 +1,6 @@
 import { useState } from "react";
+// Import Helmet and HelmetProvider right at the top
+import { Helmet, HelmetProvider } from 'react-helmet-async';
 import {
   Home,
   Info,
@@ -126,7 +128,7 @@ function Navbar() {
 }
 
 
-// --- Data Definitions ---
+// --- Data Definitions (No change) ---
 
 // What I Do
 const whatIDo = [
@@ -210,7 +212,7 @@ const education = [
     icon: Building, // Using Building icon for college
     details: [
       "Navigating the fascinating worlds of Embedded Systems & Analog circuits.",
-      "Surviving Signal Processing, EM Waves & DSP, barely though.",
+      "Surviving EM Waves & DSP, barely though.",
       "Lab sessions: where theory meets smoke alarms.",
       "Focusing on not letting the magic smoke out of components.",
     ]
@@ -400,269 +402,323 @@ export default function App() {
     lineHeight: '1.6',
   };
 
+  // Define SEO constants
+  const siteTitle = "Supratim's Circuit Board | EC Student Portfolio";
+  const siteDescription = "Explore the portfolio of Supratim Mondal, an Electronics & Communication Engineering student showcasing electronics projects (Arduino, KiCad), web development work (React, Firebase), skills, achievements, and certifications.";
+  const siteUrl = "https://portfolio.supratim.me"; // Replace with your actual deployed URL
+  const siteKeywords = "Supratim Mondal, portfolio, ECE, Electronics and Communication Engineering, React, TypeScript, Firebase, web developer, electronics projects, KiCad, Arduino, PCB design, MPPT, IoT, Google Apps Script, LaTeX, India, West Bengal, Dr. B. C. Roy Engineering College";
+  // Add a URL to an image for social sharing (e.g., your photo or a banner)
+  // const socialImageUrl = "https://supratim.netlify.app/path/to/your/social-image.jpg"; // Example
+
   return (
-    <div className="bg-gradient-to-b from-gray-950 via-black to-gray-950 text-white min-h-screen font-sans scroll-smooth">
-      <Navbar />
+    // Wrap the entire app with HelmetProvider (already present)
+    <HelmetProvider>
+      {/* Add Helmet component for SEO Meta Tags */}
+      <Helmet>
+        <title>{siteTitle}</title>
+        <meta name="description" content={siteDescription} />
+        <meta name="keywords" content={siteKeywords} />
+        <link rel="canonical" href={siteUrl} />
+        <meta name="robots" content="index, follow" />
+        <meta name="googlebot" content="index, follow" />
+        <meta name="google" content="notranslate" />
+        <meta name="theme-color" content="#030712" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta name="author" content="Supratim Mondal" />
 
-      <div className="pt-24 pb-16">
+        {/* Open Graph Meta Tags (for Facebook, LinkedIn, etc.) */}
+        <meta property="og:title" content={siteTitle} />
+        <meta property="og:description" content={siteDescription} />
+        <meta property="og:url" content={siteUrl} />
+        <meta property="og:type" content="website" />
+        {/* <meta property="og:image" content={socialImageUrl} />  Uncomment and replace with your image URL */}
+        {/* <meta property="og:image:width" content="1200" /> Optional: Specify image width */}
+        {/* <meta property="og:image:height" content="630" /> Optional: Specify image height */}
 
-        {/* --- Hero Section --- */}
-        <section id="hero" className="mb-24 relative overflow-hidden min-h-[550px] md:min-h-[500px]">
-          <div className="flex flex-wrap md:flex-nowrap w-full px-[8%] gap-[4%] items-stretch">
-            {/* Left Card */}
-            <div className="w-full md:w-[40%] bg-white/5 p-8 rounded-2xl backdrop-blur-sm flex flex-col justify-between shadow-lg border border-white/10 min-h-[500px] hover:border-purple-400/50 transition-colors duration-300 mb-6 md:mb-0">
-              <div className="space-y-3">
-                <h1 className="text-5xl lg:text-7xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-amber-400 via-orange-500 to-fuchsia-600 leading-tight animate-fade-in">
-                  🔌 Supratim Mondal
-                </h1>
-                <p className="text-lg lg:text-xl text-orange-300 font-medium flex items-center gap-2">
-                  <Coffee className="w-5 h-5 inline-block" /> Chai Lover & Aspiring Engineer
-                </p>
-                <h2 className="text-lg lg:text-2xl text-gray-300 leading-relaxed lg:leading-loose pt-2">
-                  ⚡ EC Student with <span className="italic text-amber-200/90">log<sub>10</sub> 1</span> Social Life<br className="hidden sm:block md:hidden lg:block" />
-                  🌐 Web Dev & <span className="italic text-amber-200/90">Useless</span> php Programmer<br className="hidden sm:block md:hidden lg:block" />
-                  📽️ Video Editor & <span className="italic text-amber-200/90">Memes</span> Maker<br className="hidden sm:block md:hidden lg:block" />
-                  👨‍🔧 Tech Support for <span className="text-amber-200/90">Friends and Family</span>
-                </h2>
+        {/* Twitter Card Meta Tags */}
+        <meta name="twitter:card" content="summary_large_image" /> {/* Use "summary" if you don't have a large image */}
+        <meta name="twitter:title" content={siteTitle} />
+        <meta name="twitter:description" content={siteDescription} />
+        <meta name="twitter:site" content="@supratimrk" /> {/* Your Twitter handle */}
+        <meta name="twitter:creator" content="@supratimrk" /> {/* Your Twitter handle */}
+        {/* <meta name="twitter:image" content={socialImageUrl} /> Uncomment and replace with your image URL */}
 
-                <p className="text-base lg:text-lg text-amber-200/90 italic pt-3">
-                  ~ Powered by chai ☕ and questionable life choices... mostly caffeine though. 🫠
-                </p>
+        {/* Favicon links (optional but recommended) */}
+        {/* <link rel="icon" href="/favicon.ico" sizes="any" /> */}
+        <link rel="icon" href="/tea.svg" type="image/svg+xml" />
+        {/* <link rel="apple-touch-icon" href="/apple-touch-icon.png" /> */}
+        {/* <link rel="manifest" href="/manifest.webmanifest" /> */}
+
+        {/* Set HTML language attribute */}
+        <html lang="en" />
+      </Helmet>
+
+      <div className="bg-gradient-to-b from-gray-950 via-black to-gray-950 text-white min-h-screen font-sans scroll-smooth">
+        <Navbar />
+
+        <div className="pt-24 pb-16">
+
+          {/* --- Hero Section (No functional change) --- */}
+          <section id="hero" className="mb-24 relative overflow-hidden min-h-[550px] md:min-h-[500px]">
+            <div className="flex flex-wrap md:flex-nowrap w-full px-[8%] gap-[4%] items-stretch">
+              {/* Left Card */}
+              <div className="w-full md:w-[40%] bg-white/5 p-8 rounded-2xl backdrop-blur-sm flex flex-col justify-between shadow-lg border border-white/10 min-h-[500px] hover:border-purple-400/50 transition-colors duration-300 mb-6 md:mb-0">
+                <div className="space-y-3">
+                  {/* Use h1 for the main heading */}
+                  <h1 className="text-5xl lg:text-7xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-amber-400 via-orange-500 to-fuchsia-600 leading-tight animate-fade-in">
+                    🔌 Supratim Mondal
+                  </h1>
+                  <p className="text-lg lg:text-xl text-orange-300 font-medium flex items-center gap-2">
+                    <Coffee className="w-5 h-5 inline-block" /> Chai Lover & Aspiring Engineer
+                  </p>
+                  {/* Use h2 for subheadings */}
+                  <h2 className="text-lg lg:text-2xl text-gray-300 leading-relaxed lg:leading-loose pt-2">
+                    ⚡ EC Student with <span className="italic text-amber-200/90">log<sub>10</sub> 1</span> Social Life<br className="hidden sm:block md:hidden lg:block" />
+                    🌐 Web Dev & <span className="italic text-amber-200/90">Useless</span> php Programmer<br className="hidden sm:block md:hidden lg:block" />
+                    📽️ Video Editor & <span className="italic text-amber-200/90">Memes</span> Maker<br className="hidden sm:block md:hidden lg:block" />
+                    👨‍🔧 Tech Support for <span className="text-amber-200/90">Friends and Family</span>
+                  </h2>
+
+                  <p className="text-base lg:text-lg text-amber-200/90 italic pt-3">
+                    ~ Powered by chai ☕ and questionable life choices... mostly caffeine though. 🫠
+                  </p>
+                </div>
+                {/* Badges with existing alt text (good for SEO/A11y) */}
+                <div className="mt-4 mb-4 flex flex-col gap-3 items-start">
+                  <a href="https://supratim.netlify.app" target="_blank" rel="noopener noreferrer" className="transform hover:scale-110 transition-transform duration-200"> <img src="https://img.shields.io/badge/Portfolio-You're%20Here!-blue?style=for-the-badge&logo=google-chrome&logoColor=white" alt="Portfolio Badge" /> </a>
+                  <a href="mailto:supratimrk@outlook.com" target="_blank" rel="noopener noreferrer" className="transform hover:scale-110 transition-transform duration-200"> <img src="https://img.shields.io/badge/Email-Drop%20Hello!-red?style=for-the-badge&logo=gmail&logoColor=white" alt="Email Badge" /> </a>
+                  <a href="https://twitter.com/supratimrk" target="_blank" rel="noopener noreferrer" className="transform hover:scale-110 transition-transform duration-200"> <img src="https://img.shields.io/badge/Twitter-Follow%20My%20Ramblings-1DA1F2?style=for-the-badge&logo=x&logoColor=white" alt="Twitter Badge" /> </a>
+                  {/* Updated GitHub badge for white logo */}
+                  <a href="https://github.com/SupratimRK" target="_blank" rel="noopener noreferrer" className="transform hover:scale-110 transition-transform duration-200"> <img src="https://img.shields.io/badge/GitHub-See%20My%20Code-white?style=for-the-badge&logo=github&logoColor=white" alt="GitHub Badge" /> </a>
+                  <a href="#" onClick={(e) => e.preventDefault()} className="transform hover:scale-110 transition-transform duration-200"> <img src="https://img.shields.io/badge/Facebook-Nope!-1877F2?style=for-the-badge&logo=facebook&logoColor=white" alt="Facebook Badge - Not Active" /> </a>
+                  <a href="#" onClick={(e) => e.preventDefault()} className="transform hover:scale-110 transition-transform duration-200"> <img src="https://img.shields.io/badge/Instagram-Still%20No-E4405F?style=for-the-badge&logo=instagram&logoColor=white" alt="Instagram Badge - Not Active" /> </a>
+                  {/* Updated LinkedIn badge */}
+                  <a href="#" onClick={(e) => e.preventDefault()} className="transform hover:scale-110 transition-transform duration-200"> <img src="https://img.shields.io/badge/LinkedIn-Maybe%20Someday...-0077B5?style=for-the-badge&logo=hackerone&logoColor=white" alt="LinkedIn Badge - Not Active" /> </a>
+                  {/* Updated Snapchat badge */}
+                  <a href="#" onClick={(e) => e.preventDefault()} className="transform hover:scale-110 transition-transform duration-200"> <img src="https://img.shields.io/badge/Snapchat-Definitely%20Not-FFFC00?style=for-the-badge&logo=snapchat&logoColor=white" alt="Snapchat Badge - Not Active" /> </a>
+                </div>
               </div>
-              {/* Larger Badges with updated logos */}
-              <div className="mt-4 mb-4 flex flex-col gap-3 items-start">
-                <a href="https://supratim.netlify.app" target="_blank" rel="noopener noreferrer" className="transform hover:scale-110 transition-transform duration-200"> <img src="https://img.shields.io/badge/Portfolio-You're%20Here!-blue?style=for-the-badge&logo=google-chrome&logoColor=white" alt="Portfolio Badge" /> </a>
-                <a href="mailto:supratimrk@outlook.com" target="_blank" rel="noopener noreferrer" className="transform hover:scale-110 transition-transform duration-200"> <img src="https://img.shields.io/badge/Email-Drop%20Hello!-red?style=for-the-badge&logo=gmail&logoColor=white" alt="Email Badge" /> </a>
-                <a href="https://twitter.com/supratimrk" target="_blank" rel="noopener noreferrer" className="transform hover:scale-110 transition-transform duration-200"> <img src="https://img.shields.io/badge/Twitter-Follow%20My%20Ramblings-1DA1F2?style=for-the-badge&logo=x&logoColor=white" alt="Twitter Badge" /> </a>
-                {/* Updated GitHub badge for white logo */}
-                <a href="https://github.com/SupratimRK" target="_blank" rel="noopener noreferrer" className="transform hover:scale-110 transition-transform duration-200"> <img src="https://img.shields.io/badge/GitHub-See%20My%20Code-white?style=for-the-badge&logo=github&logoColor=white" alt="GitHub Badge" /> </a>
-                <a href="#" onClick={(e) => e.preventDefault()} className="transform hover:scale-110 transition-transform duration-200"> <img src="https://img.shields.io/badge/Facebook-Nope!-1877F2?style=for-the-badge&logo=facebook&logoColor=white" alt="Facebook Badge" /> </a>
-                <a href="#" onClick={(e) => e.preventDefault()} className="transform hover:scale-110 transition-transform duration-200"> <img src="https://img.shields.io/badge/Instagram-Still%20No-E4405F?style=for-the-badge&logo=instagram&logoColor=white" alt="Instagram Badge" /> </a>
-                {/* Updated LinkedIn badge */}
-                <a href="#" onClick={(e) => e.preventDefault()} className="transform hover:scale-110 transition-transform duration-200"> <img src="https://img.shields.io/badge/LinkedIn-Maybe%20Someday...-0077B5?style=for-the-badge&logo=hackerone&logoColor=white" alt="LinkedIn Badge" /> </a>
-                {/* Updated Snapchat badge */}
-                <a href="#" onClick={(e) => e.preventDefault()} className="transform hover:scale-110 transition-transform duration-200"> <img src="https://img.shields.io/badge/Snapchat-Definitely%20Not-FFFC00?style=for-the-badge&logo=snapchat&logoColor=white" alt="Snapchat Badge" /> </a>
+
+              {/* Right Card */}
+              <div className="w-full md:w-[40%] bg-black/70 p-1 rounded-2xl backdrop-blur-sm shadow-lg border border-white/10 overflow-hidden hover:border-purple-400/50 transition-colors duration-300 min-h-[500px] flex flex-col">
+                <h2 className="text-xl font-bold pt-4 px-6 mb-0 text-purple-300 flex items-center gap-2 shrink-0"> <Info className="w-5 h-5" /> The Lowdown (YAML Edition)</h2>
+                <div className="flex-grow overflow-auto">
+                  <SyntaxHighlighter
+                    language="yaml"
+                    style={atomDark}
+                    customStyle={syntaxHighlighterStyle}
+                    wrapLines={true}
+                    lineProps={{ style: { wordBreak: 'break-all', whiteSpace: 'pre-wrap' } }}
+                  >
+                    {whoAmI_YAML}
+                  </SyntaxHighlighter>
+                </div>
               </div>
             </div>
+            {/* Subtle Icons (aria-hidden for SEO as they are decorative) */}
+            <CircuitBoard aria-hidden="true" className="absolute top-[8%] right-[10%] w-32 h-32 text-purple-600/60 opacity-70 -rotate-[20deg] hidden lg:block pointer-events-none select-none" />
+            <Atom aria-hidden="true" className="absolute top-[35%] right-[5%] w-40 h-40 text-pink-600/50 opacity-60 rotate-[10deg] hidden lg:block pointer-events-none select-none" />
+            <Code aria-hidden="true" className="absolute bottom-[5%] right-[12%] w-36 h-36 text-blue-600/60 opacity-70 rotate-[5deg] hidden lg:block pointer-events-none select-none" />
+            <Network aria-hidden="true" className="absolute bottom-[30%] right-[18%] w-28 h-28 text-teal-600/50 opacity-60 -rotate-[10deg] hidden lg:block pointer-events-none select-none" />
+            <Target aria-hidden="true" className="absolute top-[60%] right-[9%] w-24 h-24 text-indigo-600/50 opacity-60 rotate-[15deg] hidden lg:block pointer-events-none select-none" />
+            <BrainCircuit aria-hidden="true" className="absolute top-[15%] right-[20%] w-24 h-24 text-lime-600/40 opacity-50 rotate-[25deg] hidden lg:block pointer-events-none select-none" />
+            <FlaskConical aria-hidden="true" className="absolute bottom-[10%] right-[2%] w-28 h-28 text-amber-600/40 opacity-50 -rotate-[5deg] hidden lg:block pointer-events-none select-none" />
+          </section>
 
-            {/* Right Card */}
-            <div className="w-full md:w-[40%] bg-black/70 p-1 rounded-2xl backdrop-blur-sm shadow-lg border border-white/10 overflow-hidden hover:border-purple-400/50 transition-colors duration-300 min-h-[500px] flex flex-col">
-              <h2 className="text-xl font-bold pt-4 px-6 mb-0 text-purple-300 flex items-center gap-2 shrink-0"> <Info className="w-5 h-5" /> The Lowdown (YAML Edition)</h2>
-              <div className="flex-grow overflow-auto">
-                <SyntaxHighlighter
-                  language="yaml"
-                  style={atomDark}
-                  customStyle={syntaxHighlighterStyle}
-                  wrapLines={true}
-                  lineProps={{ style: { wordBreak: 'break-all', whiteSpace: 'pre-wrap' } }}
-                >
-                  {whoAmI_YAML}
-                </SyntaxHighlighter>
+          {/* --- What I Do & Achievements (No functional change) --- */}
+          <section id="whatidoachievements" aria-labelledby="antics-heading" className="mb-24 relative overflow-hidden min-h-[550px] md:min-h-[500px]">
+            <h2 id="antics-heading" className="text-4xl font-bold text-center mb-12 text-purple-300 px-[8%]">My Antics: Skills & Glorious Achievements ✨</h2>
+            <div className="flex flex-wrap md:flex-nowrap w-full px-[8%] gap-[4%] items-stretch">
+              {/* Left Card: What I Do */}
+              <div className="w-full md:w-[40%] bg-black/60 p-8 rounded-2xl border border-white/10 shadow-md hover:shadow-purple-500/20 transition-shadow duration-300 mb-6 md:mb-0">
+                <h3 className="text-2xl font-semibold mb-5 flex items-center gap-2 text-green-400"><Wrench className="w-6 h-6" /> My Bag of Tricks</h3>
+                <ul className="list-none space-y-3.5">
+                  {whatIDo.map((item, index) => (
+                    <li key={index} className="text-gray-300 text-base flex items-start">
+                      <span className="text-green-500 mr-2.5 mt-1 scale-110 shrink-0" aria-hidden="true"><Activity /></span>
+                      <span dangerouslySetInnerHTML={{ __html: formatMarkdown(item) }} />
+                    </li>
+                  ))}
+                </ul>
+              </div>
+
+              {/* Right Card: Achievements / Fails */}
+              <div className="w-full md:w-[40%] bg-black/60 p-8 rounded-2xl border border-white/10 shadow-md hover:shadow-red-500/20 transition-shadow duration-300">
+                <h3 className="text-2xl font-semibold mb-5 flex items-center gap-2 text-amber-200/90"><Trophy className="w-6 h-6" /> Epic Achievements</h3>
+                <ul className="list-none space-y-4">
+                  {achievements.map((ach, index) => (
+                    <li key={index} className="text-gray-300 text-base flex items-start">
+                      <span className="text-amber-200/90 mr-2.5 mt-1 scale-110 shrink-0" aria-hidden="true"><Sparkles /></span>
+                      {/* Render BOLDED achievement text with emojis */}
+                      <span dangerouslySetInnerHTML={{ __html: ach }} />
+                    </li>
+                  ))}
+                </ul>
               </div>
             </div>
-          </div>
-          {/* More Subtle Icons */}
-          <CircuitBoard aria-hidden="true" className="absolute top-[8%] right-[10%] w-32 h-32 text-purple-600/60 opacity-70 -rotate-[20deg] hidden lg:block pointer-events-none select-none" />
-          <Atom aria-hidden="true" className="absolute top-[35%] right-[5%] w-40 h-40 text-pink-600/50 opacity-60 rotate-[10deg] hidden lg:block pointer-events-none select-none" />
-          <Code aria-hidden="true" className="absolute bottom-[5%] right-[12%] w-36 h-36 text-blue-600/60 opacity-70 rotate-[5deg] hidden lg:block pointer-events-none select-none" />
-          <Network aria-hidden="true" className="absolute bottom-[30%] right-[18%] w-28 h-28 text-teal-600/50 opacity-60 -rotate-[10deg] hidden lg:block pointer-events-none select-none" />
-          <Target aria-hidden="true" className="absolute top-[60%] right-[9%] w-24 h-24 text-indigo-600/50 opacity-60 rotate-[15deg] hidden lg:block pointer-events-none select-none" />
-          <BrainCircuit aria-hidden="true" className="absolute top-[15%] right-[20%] w-24 h-24 text-lime-600/40 opacity-50 rotate-[25deg] hidden lg:block pointer-events-none select-none" />
-          <FlaskConical aria-hidden="true" className="absolute bottom-[10%] right-[2%] w-28 h-28 text-amber-600/40 opacity-50 -rotate-[5deg] hidden lg:block pointer-events-none select-none" />
-        </section>
+            {/* Subtle Icons (aria-hidden for SEO) */}
+            <Lightbulb aria-hidden="true" className="absolute top-16 right-[6%] w-36 h-36 text-yellow-500/60 opacity-80 rotate-[10deg] hidden lg:block pointer-events-none select-none" />
+            <Zap aria-hidden="true" className="absolute bottom-8 right-[4%] w-32 h-32 text-orange-500/50 opacity-70 -rotate-[15deg] hidden lg:block pointer-events-none select-none" />
+            <Cpu aria-hidden="true" className="absolute top-[40%] right-[15%] w-28 h-28 text-cyan-600/50 opacity-60 rotate-[25deg] hidden lg:block pointer-events-none select-none" />
+            <Wrench aria-hidden="true" className="absolute bottom-[10%] right-[13%] w-24 h-24 text-lime-600/50 opacity-60 rotate-[5deg] hidden lg:block pointer-events-none select-none" />
+            <Activity aria-hidden="true" className="absolute top-[10%] right-[18%] w-28 h-28 text-red-600/40 opacity-50 -rotate-[10deg] hidden lg:block pointer-events-none select-none" />
+            <Thermometer aria-hidden="true" className="absolute bottom-[40%] right-[5%] w-24 h-24 text-blue-600/40 opacity-50 rotate-[20deg] hidden lg:block pointer-events-none select-none" />
+            <Settings aria-hidden="true" className="absolute top-[65%] right-[16%] w-20 h-20 text-gray-600/50 opacity-60 rotate-[-25deg] hidden lg:block pointer-events-none select-none" />
+          </section>
 
-        {/* --- What I Do & Achievements --- */}
-        <section id="whatidoachievements" className="mb-24 relative overflow-hidden min-h-[550px] md:min-h-[500px]">
-          <h2 className="text-4xl font-bold text-center mb-12 text-purple-300 px-[8%]">My Antics: Skills & Glorious Achievements ✨</h2>
-          <div className="flex flex-wrap md:flex-nowrap w-full px-[8%] gap-[4%] items-stretch">
-            {/* Left Card: What I Do */}
-            <div className="w-full md:w-[40%] bg-black/60 p-8 rounded-2xl border border-white/10 shadow-md hover:shadow-purple-500/20 transition-shadow duration-300 mb-6 md:mb-0">
-              <h3 className="text-2xl font-semibold mb-5 flex items-center gap-2 text-green-400"><Wrench className="w-6 h-6" /> My Bag of Tricks</h3>
-              <ul className="list-none space-y-3.5">
-                {whatIDo.map((item, index) => (
-                  <li key={index} className="text-gray-300 text-base flex items-start">
-                    <span className="text-green-500 mr-2.5 mt-1 scale-110 shrink-0"><Activity/></span>
-                    <span dangerouslySetInnerHTML={{ __html: formatMarkdown(item) }} />
-                  </li>
+          {/* --- Education Section (No functional change) --- */}
+          <section id="education" aria-labelledby="education-heading" className="mb-24 px-[8%]">
+            <div className="bg-white/5 p-8 rounded-2xl backdrop-blur-sm border border-white/10 shadow-lg">
+              <h2 id="education-heading" className="text-4xl font-bold text-center mb-10 text-purple-300 flex items-center justify-center gap-3">
+                The Lore: Academic Chapters 📚
+              </h2>
+              <div className="flex flex-wrap gap-8 justify-center">
+                {education.map((edu, index) => {
+                  const Icon = edu.icon || School; // Fallback icon
+                  return (
+                    <div key={index} className="bg-black/70 p-6 rounded-xl backdrop-blur-sm hover:bg-black/50 transition-all flex-1 min-w-[310px] max-w-[420px] border border-white/10 shadow-md hover:scale-105 duration-300">
+                      <h3 className="text-xl font-bold mb-2 text-purple-400">{edu.degree}</h3>
+                      <p className="text-gray-400 mb-1 flex items-center gap-2">
+                        <Icon className="w-4 h-4 text-gray-500 inline-block shrink-0" aria-hidden="true" />
+                        {edu.institution}
+                      </p>
+                      <p className="text-sm text-gray-500 mb-3">{edu.period}</p>
+                      <ul className="list-disc list-inside text-gray-300 space-y-1.5 text-sm pl-2">
+                        {edu.details.map((detail, i) => <li key={i}>{detail}</li>)}
+                      </ul>
+                    </div>
+                  );
+                })}
+              </div>
+            </div>
+          </section>
+
+          {/* --- Notable EC Projects (No functional change) --- */}
+          <section id="ec-projects" aria-labelledby="ec-projects-heading" className="mb-24 px-[8%]">
+            <div className="bg-white/5 p-8 rounded-2xl backdrop-blur-sm border border-white/10 shadow-lg">
+              <h2 id="ec-projects-heading" className="text-4xl font-bold text-center mb-10 text-purple-300">EC Adventures: Sparks & Chaos ⚡</h2>
+              <div className="flex flex-wrap gap-8 justify-center">
+                {ecProjects.map((proj, index) => (
+                  <div key={index} className="group bg-black/70 p-6 rounded-xl backdrop-blur-sm hover:bg-black/50 transition-all flex-1 min-w-[330px] max-w-[460px] border border-white/10 shadow-md hover:shadow-yellow-500/20 duration-300 flex flex-col">
+                    <div className="flex items-center gap-3 mb-3"> {proj.icon} <h3 className="text-xl font-bold text-purple-400 group-hover:text-yellow-300 transition-colors">{proj.title}</h3> </div>
+                    <p className="text-sm text-gray-400 mb-2"><strong className="text-gray-300">Quest:</strong> {proj.target}</p>
+                    <p className="text-sm text-gray-300 mb-3 flex-grow">{proj.description}</p>
+                    <div className="mb-3"> <strong className="text-sm text-yellow-400">Boss Fights:</strong> <ul className="list-disc list-inside text-gray-400 space-y-1 text-xs pl-2 mt-1"> {proj.challenges.map((c, i) => <li key={i}>{c}</li>)} </ul> </div>
+                    <div className="mt-auto pt-3 border-t border-white/10 shrink-0"> <p className={`text-sm font-semibold mb-1 ${proj.outcome.includes('Fail') ? 'text-red-400' : proj.outcome.includes('Success') || proj.outcome.includes('Survived') ? 'text-green-400' : 'text-yellow-400'}`}> Verdict: {proj.outcome} </p> <p className="text-xs text-gray-400"><strong className="text-gray-300">Loot Gained (Learnings):</strong> {proj.learnings}</p> {proj.failureReason && <p className="text-xs text-red-500 mt-1"><strong className="text-red-400">Why it Exploded:</strong> {proj.failureReason}</p>} </div>
+                  </div>
                 ))}
-              </ul>
+              </div>
             </div>
+          </section>
 
-            {/* Right Card: Achievements / Fails */}
-            <div className="w-full md:w-[40%] bg-black/60 p-8 rounded-2xl border border-white/10 shadow-md hover:shadow-red-500/20 transition-shadow duration-300">
-              <h3 className="text-2xl font-semibold mb-5 flex items-center gap-2 text-amber-200/90"><Trophy className="w-6 h-6" /> Epic Achievements</h3>
-              <ul className="list-none space-y-4">
-                {achievements.map((ach, index) => (
-                  <li key={index} className="text-gray-300 text-base flex items-start">
-                    <span className="text-amber-200/90 mr-2.5 mt-1 scale-110 shrink-0"><Sparkles /></span>
-                    {/* Render BOLDED achievement text with emojis */}
-                    <span dangerouslySetInnerHTML={{ __html: ach }} />
-                  </li>
+          {/* --- Notable IT Projects (No functional change) --- */}
+          <section id="it-projects" aria-labelledby="it-projects-heading" className="mb-24 px-[8%]">
+            <div className="bg-white/5 p-8 rounded-2xl backdrop-blur-sm border border-white/10 shadow-lg">
+              <h2 id="it-projects-heading" className="text-4xl font-bold text-center mb-10 text-purple-300">IT Expeditions: Code & Pixels 💻</h2>
+              <div className="flex flex-wrap gap-8 justify-center">
+                {itProjects.map((proj, index) => (
+                  <div key={index} className="group bg-black/70 p-6 rounded-xl backdrop-blur-sm hover:bg-black/50 transition-all flex-1 min-w-[330px] max-w-[460px] border border-white/10 shadow-md hover:shadow-blue-500/20 duration-300 flex flex-col">
+                    <div className="flex items-center gap-3 mb-3"> {proj.icon} <h3 className="text-xl font-bold text-purple-400 group-hover:text-blue-300 transition-colors">{proj.title}</h3> </div>
+                    <p className="text-sm text-gray-400 mb-2"><strong className="text-gray-300">Mission:</strong> {proj.target}</p>
+                    <p className="text-sm text-gray-300 mb-3 flex-grow">{proj.description}</p>
+                    <div className="mb-3"> <strong className="text-sm text-yellow-400">Debugging Battles:</strong> <ul className="list-disc list-inside text-gray-400 space-y-1 text-xs pl-2 mt-1"> {proj.challenges.map((c, i) => <li key={i}>{c}</li>)} </ul> </div>
+                    <div className="mt-auto pt-3 border-t border-white/10 shrink-0"> <p className={`text-sm font-semibold mb-1 ${proj.outcome.includes('Fail') ? 'text-red-400' : proj.outcome.includes('Success') || proj.outcome.includes('Useful') ? 'text-green-400' : 'text-yellow-400'}`}> Status: {proj.outcome} </p> <p className="text-xs text-gray-400"><strong className="text-gray-300">XP Gained (Learnings):</strong> {proj.learnings}</p> {proj.failureReason && <p className="text-xs text-red-500 mt-1"><strong className="text-red-400">Where it Stumbled:</strong> {proj.failureReason}</p>} </div>
+                  </div>
                 ))}
-              </ul>
+              </div>
             </div>
-          </div>
-          {/* More Subtle Icons */}
-          <Lightbulb aria-hidden="true" className="absolute top-16 right-[6%] w-36 h-36 text-yellow-500/60 opacity-80 rotate-[10deg] hidden lg:block pointer-events-none select-none" />
-          <Zap aria-hidden="true" className="absolute bottom-8 right-[4%] w-32 h-32 text-orange-500/50 opacity-70 -rotate-[15deg] hidden lg:block pointer-events-none select-none" />
-          <Cpu aria-hidden="true" className="absolute top-[40%] right-[15%] w-28 h-28 text-cyan-600/50 opacity-60 rotate-[25deg] hidden lg:block pointer-events-none select-none" />
-          <Wrench aria-hidden="true" className="absolute bottom-[10%] right-[13%] w-24 h-24 text-lime-600/50 opacity-60 rotate-[5deg] hidden lg:block pointer-events-none select-none" />
-          <Activity aria-hidden="true" className="absolute top-[10%] right-[18%] w-28 h-28 text-red-600/40 opacity-50 -rotate-[10deg] hidden lg:block pointer-events-none select-none" />
-          <Thermometer aria-hidden="true" className="absolute bottom-[40%] right-[5%] w-24 h-24 text-blue-600/40 opacity-50 rotate-[20deg] hidden lg:block pointer-events-none select-none" />
-          <Settings aria-hidden="true" className="absolute top-[65%] right-[16%] w-20 h-20 text-gray-600/50 opacity-60 rotate-[-25deg] hidden lg:block pointer-events-none select-none" />
-        </section>
+          </section>
 
-        {/* --- Education Section --- */}
-        <section id="education" className="mb-24 px-[8%]">
-          <div className="bg-white/5 p-8 rounded-2xl backdrop-blur-sm border border-white/10 shadow-lg">
-            <h2 className="text-4xl font-bold text-center mb-10 text-purple-300 flex items-center justify-center gap-3">
-              <span className="w-8 h-8" /> The Lore: Academic Chapters 📚
-            </h2>
-            <div className="flex flex-wrap gap-8 justify-center">
-              {education.map((edu, index) => {
-                const Icon = edu.icon || School; // Fallback icon
-                return (
-                  <div key={index} className="bg-black/70 p-6 rounded-xl backdrop-blur-sm hover:bg-black/50 transition-all flex-1 min-w-[310px] max-w-[420px] border border-white/10 shadow-md hover:scale-105 duration-300">
-                    <h3 className="text-xl font-bold mb-2 text-purple-400">{edu.degree}</h3>
-                    <p className="text-gray-400 mb-1 flex items-center gap-2">
-                      <Icon className="w-4 h-4 text-gray-500 inline-block shrink-0" />
-                      {edu.institution}
-                    </p>
-                    <p className="text-sm text-gray-500 mb-3">{edu.period}</p>
-                    <ul className="list-disc list-inside text-gray-300 space-y-1.5 text-sm pl-2">
-                      {edu.details.map((detail, i) => <li key={i}>{detail}</li>)}
+          {/* --- Certifications & Trainings Section (No functional change) --- */}
+          <section id="certifications" aria-labelledby="certs-heading" className="mb-24 px-[8%]">
+            <div className="bg-gradient-to-br from-gray-900/70 to-black/80 p-8 rounded-2xl backdrop-blur-sm border border-white/10 shadow-lg relative overflow-hidden">
+              <h2 id="certs-heading" className="text-4xl font-bold text-center mb-4 text-purple-300 flex items-center justify-center gap-3 z-10 relative">
+                The Paper Trail: Only Certs, No Skills 📜
+              </h2>
+              <h3 className="text-lg text-center text-purple-300 opacity-60 mb-8 z-10 relative">"All certifications are online 'cause my college only teaches how to mark 75% attendance. Offline training? Lol, do you think they would let us breathe outside campus?"</h3>
+              <Award aria-hidden="true" className="absolute -top-10 -left-10 w-48 h-48 text-purple-900/30 opacity-100 rotate-12 pointer-events-none" />
+              <div className="overflow-x-auto rounded-lg border border-purple-400/30 shadow-inner shadow-purple-900/20 z-10 relative">
+                <table className="w-full text-left border-collapse min-w-[650px]">
+                  <caption className="sr-only">Table of certifications and online courses completed</caption> {/* Added for screen readers */}
+                  <thead className="bg-black/60 backdrop-blur-sm">
+                    <tr className="border-b-2 border-purple-500/50">
+                      <th scope="col" className="px-6 py-3 text-sm font-semibold text-gray-300 uppercase tracking-wider w-12"><span className="sr-only">Icon</span></th> {/* Icon column, hidden text for screen readers */}
+                      <th scope="col" className="px-6 py-3 text-sm font-semibold text-gray-300 uppercase tracking-wider">Scroll of Knowledge</th>
+                      <th scope="col" className="px-6 py-3 text-sm font-semibold text-gray-300 uppercase tracking-wider">Source</th>
+                      <th scope="col" className="px-6 py-3 text-sm font-semibold text-gray-300 uppercase tracking-wider">Time Invested</th>
+                    </tr>
+                  </thead>
+                  <tbody className="divide-y divide-white/10">
+                    {certifications.map((cert, index) => {
+                      const Icon = cert.icon || Award;
+                      return (
+                        <tr key={index} className="hover:bg-white/10 transition-colors duration-200 group">
+                          <td className="px-6 py-4 text-center">
+                            <Icon className="w-5 h-5 text-purple-400 group-hover:text-purple-300 transition-colors" aria-hidden="true" />
+                          </td>
+                          <td className="px-6 py-4 text-sm text-gray-200 font-medium">{cert.course}</td>
+                          <td className="px-6 py-4 text-sm text-gray-400">{cert.platform}</td>
+                          <td className="px-6 py-4 text-sm text-gray-400">{cert.duration}</td>
+                        </tr>
+                      );
+                    })}
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </section>
+
+          {/* --- My Battle Gear (No functional change) --- */}
+          <section id="battlegear" aria-labelledby="battlegear-heading" className="mb-24 px-[8%]">
+            <div className="bg-white/5 p-8 rounded-2xl backdrop-blur-sm border border-white/10 shadow-lg">
+              <h2 id="battlegear-heading" className="text-4xl font-bold text-center mb-10 text-purple-300 flex items-center justify-center gap-3">
+                My Humble Arsenal ⚔️
+              </h2>
+              <div className="flex flex-wrap gap-8 justify-center">
+                {battleGear.map((gear, index) => (
+                  <div key={index} className="bg-black/70 p-6 rounded-xl backdrop-blur-sm hover:bg-black/50 transition-all flex-1 min-w-[310px] max-w-[420px] border border-white/10 shadow-md hover:-translate-y-1 duration-300">
+                    <h3 className="text-xl font-bold mb-3 text-purple-400">{gear.title}</h3>
+                    <ul className="list-none space-y-1.5 text-sm">
+                      {gear.details.map((detail, i) => <li key={i} className="text-gray-300">{detail}</li>)}
                     </ul>
                   </div>
-                );
-              })}
+                ))}
+              </div>
             </div>
-          </div>
-        </section>
+          </section>
 
-        {/* --- Notable EC Projects --- */}
-        <section id="ec-projects" className="mb-24 px-[8%]">
-          <div className="bg-white/5 p-8 rounded-2xl backdrop-blur-sm border border-white/10 shadow-lg">
-            <h2 className="text-4xl font-bold text-center mb-10 text-purple-300">EC Adventures: Sparks & Chaos ⚡</h2>
-            <div className="flex flex-wrap gap-8 justify-center">
-              {ecProjects.map((proj, index) => (
-                <div key={index} className="group bg-black/70 p-6 rounded-xl backdrop-blur-sm hover:bg-black/50 transition-all flex-1 min-w-[330px] max-w-[460px] border border-white/10 shadow-md hover:shadow-yellow-500/20 duration-300 flex flex-col">
-                  <div className="flex items-center gap-3 mb-3"> {proj.icon} <h3 className="text-xl font-bold text-purple-400 group-hover:text-yellow-300 transition-colors">{proj.title}</h3> </div>
-                  <p className="text-sm text-gray-400 mb-2"><strong className="text-gray-300">Quest:</strong> {proj.target}</p>
-                  <p className="text-sm text-gray-300 mb-3 flex-grow">{proj.description}</p>
-                  <div className="mb-3"> <strong className="text-sm text-yellow-400">Boss Fights:</strong> <ul className="list-disc list-inside text-gray-400 space-y-1 text-xs pl-2 mt-1"> {proj.challenges.map((c, i) => <li key={i}>{c}</li>)} </ul> </div>
-                  <div className="mt-auto pt-3 border-t border-white/10 shrink-0"> <p className={`text-sm font-semibold mb-1 ${proj.outcome.includes('Fail') ? 'text-red-400' : proj.outcome.includes('Success') || proj.outcome.includes('Survived') ? 'text-green-400' : 'text-yellow-400'}`}> Verdict: {proj.outcome} </p> <p className="text-xs text-gray-400"><strong className="text-gray-300">Loot Gained (Learnings):</strong> {proj.learnings}</p> {proj.failureReason && <p className="text-xs text-red-500 mt-1"><strong className="text-red-400">Why it Exploded:</strong> {proj.failureReason}</p>} </div>
-                </div>
-              ))}
+          {/* --- Let's Connect (No functional change) --- */}
+          <section id="contact" aria-labelledby="contact-heading" className="mb-8 px-[8%]">
+            <div className="bg-gradient-to-r from-purple-800/40 to-pink-800/40 p-10 rounded-2xl backdrop-blur-sm text-center border border-white/10 shadow-lg hover:shadow-purple-500/30 transition-shadow duration-300">
+              <h2 id="contact-heading" className="text-4xl font-bold mb-6 text-white">Let's have ☕ chai, together! (Virtually? No Problem!)</h2>
+              <p className="text-gray-200 mb-8 max-w-xl mx-auto text-lg leading-relaxed">
+                Need a partner in crime for your next electronic escapade? Wanna bitch you clg, prof. with someone? Or just want to debate the best chai? <br />Hit me up! 👇
+              </p>
+              <div className="flex justify-center items-center gap-6 md:gap-8 mb-10 flex-wrap">
+                {[
+                  { icon: Mail, href: "mailto:supratimrk@outlook.com", label: "Email Me!", color: "hover:text-red-400" },
+                  { icon: Github, href: "https://github.com/SupratimRK", label: "Stalk My Code on GitHub", color: "hover:text-gray-300" }, // More descriptive label
+                  { icon: Twitter, href: "https://twitter.com/supratimrk", label: "Tweet Me!", color: "hover:text-blue-400" },
+                ].map((item, index) => {
+                  const Icon = item.icon;
+                  return (<a key={index} href={item.href} target="_blank" rel="noopener noreferrer" className={`p-4 bg-black/60 rounded-full text-gray-300 ${item.color} transition-all transform hover:scale-125 hover:-translate-y-1 duration-300 shadow-lg`} aria-label={item.label} title={item.label}> <Icon className="w-7 h-7" /> </a>);
+                })}
+              </div>
+              <p className="text-gray-300 text-base">
+                Check out my digital playground:{" "}
+                <a href= {siteUrl} target="_blank" rel="noopener noreferrer" className="text-purple-300 hover:text-pink-300 underline underline-offset-4 font-semibold transition-colors"> portfolio.supratim.me </a>
+              </p>
             </div>
-          </div>
-        </section>
+          </section>
 
-        {/* --- Notable IT Projects --- */}
-        <section id="it-projects" className="mb-24 px-[8%]">
-          <div className="bg-white/5 p-8 rounded-2xl backdrop-blur-sm border border-white/10 shadow-lg">
-            <h2 className="text-4xl font-bold text-center mb-10 text-purple-300">IT Expeditions: Code & Pixels 💻</h2>
-            <div className="flex flex-wrap gap-8 justify-center">
-              {itProjects.map((proj, index) => (
-                <div key={index} className="group bg-black/70 p-6 rounded-xl backdrop-blur-sm hover:bg-black/50 transition-all flex-1 min-w-[330px] max-w-[460px] border border-white/10 shadow-md hover:shadow-blue-500/20 duration-300 flex flex-col">
-                  <div className="flex items-center gap-3 mb-3"> {proj.icon} <h3 className="text-xl font-bold text-purple-400 group-hover:text-blue-300 transition-colors">{proj.title}</h3> </div>
-                  <p className="text-sm text-gray-400 mb-2"><strong className="text-gray-300">Mission:</strong> {proj.target}</p>
-                  <p className="text-sm text-gray-300 mb-3 flex-grow">{proj.description}</p>
-                  <div className="mb-3"> <strong className="text-sm text-yellow-400">Debugging Battles:</strong> <ul className="list-disc list-inside text-gray-400 space-y-1 text-xs pl-2 mt-1"> {proj.challenges.map((c, i) => <li key={i}>{c}</li>)} </ul> </div>
-                  <div className="mt-auto pt-3 border-t border-white/10 shrink-0"> <p className={`text-sm font-semibold mb-1 ${proj.outcome.includes('Fail') ? 'text-red-400' : proj.outcome.includes('Success') || proj.outcome.includes('Useful') ? 'text-green-400' : 'text-yellow-400'}`}> Status: {proj.outcome} </p> <p className="text-xs text-gray-400"><strong className="text-gray-300">XP Gained (Learnings):</strong> {proj.learnings}</p> {proj.failureReason && <p className="text-xs text-red-500 mt-1"><strong className="text-red-400">Where it Stumbled:</strong> {proj.failureReason}</p>} </div>
-                </div>
-              ))}
-            </div>
-          </div>
-        </section>
+        </div> {/* End pt-24 wrapper */}
 
-        {/* --- Certifications & Trainings Section --- */}
-        <section id="certifications" className="mb-24 px-[8%]">
-          <div className="bg-gradient-to-br from-gray-900/70 to-black/80 p-8 rounded-2xl backdrop-blur-sm border border-white/10 shadow-lg relative overflow-hidden">
-            <h2 className="text-4xl font-bold text-center mb-4 text-purple-300 flex items-center justify-center gap-3 z-10 relative">
-              <span className="w-8 h-8" /> The Paper Trail: Only Certs, No Skills 📜
-            </h2>
-            <h3 className="text-lg text-center text-purple-300 opacity-60 mb-8 z-10 relative">"All certifications are online 'cause my college only teaches how to mark 75% attendance. Offline training? Lol, do you think they would let us breathe outside campus?"</h3>
-            <Award aria-hidden="true" className="absolute -top-10 -left-10 w-48 h-48 text-purple-900/30 opacity-100 rotate-12 pointer-events-none" />
-            <div className="overflow-x-auto rounded-lg border border-purple-400/30 shadow-inner shadow-purple-900/20 z-10 relative">
-              <table className="w-full text-left border-collapse min-w-[650px]">
-                <thead className="bg-black/60 backdrop-blur-sm">
-                  <tr className="border-b-2 border-purple-500/50">
-                    <th className="px-6 py-3 text-sm font-semibold text-gray-300 uppercase tracking-wider w-12"></th> {/* Icon column */}
-                    <th className="px-6 py-3 text-sm font-semibold text-gray-300 uppercase tracking-wider">Scroll of Knowledge</th>
-                    <th className="px-6 py-3 text-sm font-semibold text-gray-300 uppercase tracking-wider">Source</th>
-                    <th className="px-6 py-3 text-sm font-semibold text-gray-300 uppercase tracking-wider">Time Invested</th>
-                  </tr>
-                </thead>
-                <tbody className="divide-y divide-white/10">
-                  {certifications.map((cert, index) => {
-                    const Icon = cert.icon || Award;
-                    return (
-                      <tr key={index} className="hover:bg-white/10 transition-colors duration-200 group">
-                        <td className="px-6 py-4 text-center">
-                          <Icon className="w-5 h-5 text-purple-400 group-hover:text-purple-300 transition-colors" />
-                        </td>
-                        <td className="px-6 py-4 text-sm text-gray-200 font-medium">{cert.course}</td>
-                        <td className="px-6 py-4 text-sm text-gray-400">{cert.platform}</td>
-                        <td className="px-6 py-4 text-sm text-gray-400">{cert.duration}</td>
-                      </tr>
-                    );
-                  })}
-                </tbody>
-              </table>
-            </div>
-          </div>
-        </section>
-
-        {/* --- My Battle Gear --- */}
-        <section id="battlegear" className="mb-24 px-[8%]">
-          <div className="bg-white/5 p-8 rounded-2xl backdrop-blur-sm border border-white/10 shadow-lg">
-            <h2 className="text-4xl font-bold text-center mb-10 text-purple-300 flex items-center justify-center gap-3">
-              <span className="w-8 h-8" /> My Humble Arsenal ⚔️
-            </h2>
-            <div className="flex flex-wrap gap-8 justify-center">
-              {battleGear.map((gear, index) => (
-                <div key={index} className="bg-black/70 p-6 rounded-xl backdrop-blur-sm hover:bg-black/50 transition-all flex-1 min-w-[310px] max-w-[420px] border border-white/10 shadow-md hover:-translate-y-1 duration-300">
-                  <h3 className="text-xl font-bold mb-3 text-purple-400">{gear.title}</h3>
-                  <ul className="list-none space-y-1.5 text-sm">
-                    {gear.details.map((detail, i) => <li key={i} className="text-gray-300">{detail}</li>)}
-                  </ul>
-                </div>
-              ))}
-            </div>
-          </div>
-        </section>
-
-        {/* --- Let's Connect --- */}
-        <section id="contact" className="mb-8 px-[8%]">
-          <div className="bg-gradient-to-r from-purple-800/40 to-pink-800/40 p-10 rounded-2xl backdrop-blur-sm text-center border border-white/10 shadow-lg hover:shadow-purple-500/30 transition-shadow duration-300">
-            <h2 className="text-4xl font-bold mb-6 text-white">Let's have ☕ chai, together! (Virtually? No Problem!)</h2>
-            <p className="text-gray-200 mb-8 max-w-xl mx-auto text-lg leading-relaxed">
-            Need a partner in crime for your next electronic escapade? Wanna bitch you clg, prof. with someone? Or just want to debate the best chai? <br />Hit me up! 👇
-            </p>
-            <div className="flex justify-center items-center gap-6 md:gap-8 mb-10 flex-wrap">
-              {[
-                { icon: Mail, href: "mailto:supratimrk@outlook.com", label: "Email Me!", color: "hover:text-red-400" },
-                { icon: Github, href: "https://github.com/SupratimRK", label: "Stalk My Code", color: "hover:text-gray-300" },
-                { icon: Twitter, href: "https://twitter.com/supratimrk", label: "Tweet Me!", color: "hover:text-blue-400" },
-              ].map((item, index) => {
-                const Icon = item.icon;
-                return (<a key={index} href={item.href} target="_blank" rel="noopener noreferrer" className={`p-4 bg-black/60 rounded-full text-gray-300 ${item.color} transition-all transform hover:scale-125 hover:-translate-y-1 duration-300 shadow-lg`} aria-label={item.label} title={item.label}> <Icon className="w-7 h-7" /> </a>);
-              })}
-            </div>
-            <p className="text-gray-300 text-base">
-              Check out my digital playground:{" "}
-              <a href="https://supratim.netlify.app" target="_blank" rel="noopener noreferrer" className="text-purple-300 hover:text-pink-300 underline underline-offset-4 font-semibold transition-colors"> supratim.netlify.app </a>
-            </p>
-          </div>
-        </section>
-
-      </div> {/* End pt-24 wrapper */}
-
-      {/* Footer */}
-      <footer className="py-8 text-center text-gray-500 text-sm border-t border-white/10">
-        <p>Forged with React, Tailwind, & unhealthy amounts of Chai. <Coffee className="inline w-4 h-4 text-orange-400 align-baseline" /></p>
-        <p>© {new Date().getFullYear()} Supratim Mondal. All shenanigans reserved.</p>
-      </footer>
-    </div>
+        {/* Footer (No functional change) */}
+        <footer className="py-8 text-center text-gray-500 text-sm border-t border-white/10">
+          <p>Forged with React, Tailwind, & unhealthy amounts of Chai. <Coffee className="inline w-4 h-4 text-orange-400 align-baseline" aria-label="coffee icon" /></p>
+          <p>© {new Date().getFullYear()} Supratim Mondal. All shenanigans reserved.</p>
+        </footer>
+      </div>
+    </HelmetProvider> // Close HelmetProvider
   );
 }
