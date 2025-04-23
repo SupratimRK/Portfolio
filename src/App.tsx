@@ -1,6 +1,7 @@
 import { useState } from "react";
-// Import Helmet and HelmetProvider right at the top
 import { Helmet, HelmetProvider } from 'react-helmet-async';
+import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter';
+import { atomDark } from 'react-syntax-highlighter/dist/esm/styles/prism';
 import {
   Home,
   Info,
@@ -31,10 +32,9 @@ import {
   BrainCircuit, // Subtle Icon
   Thermometer, // Subtle Icon
   Settings, // Subtle Icon
-  Trophy // Keep for potential future use?
+  Trophy, // Keep for potential future use?
 } from "lucide-react";
-import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter';
-import { atomDark } from 'react-syntax-highlighter/dist/esm/styles/prism';
+import ChatBot from './ChatBot'; // Adjust path if needed
 
 // --- Helper Function (No change) ---
 function formatMarkdown(str: string): string {
@@ -394,6 +394,8 @@ const battleGear = [
 
 // --- Main App Component ---
 export default function App() {
+  const [isChatModalOpen, setIsChatModalOpen] = useState(false);
+
   const syntaxHighlighterStyle = {
     backgroundColor: 'transparent',
     padding: '1rem',
@@ -411,9 +413,7 @@ export default function App() {
   // const socialImageUrl = "https://supratim.netlify.app/path/to/your/social-image.jpg"; // Example
 
   return (
-    // Wrap the entire app with HelmetProvider (already present)
     <HelmetProvider>
-      {/* Add Helmet component for SEO Meta Tags */}
       <Helmet>
         <title>{siteTitle}</title>
         <meta name="description" content={siteDescription} />
@@ -453,7 +453,7 @@ export default function App() {
         <html lang="en" />
       </Helmet>
 
-      <div className="bg-gradient-to-b from-gray-950 via-black to-gray-950 text-white min-h-screen font-sans scroll-smooth">
+      <div className="bg-gradient-to-b from-gray-950 via-black to-gray-950 text-white min-h-screen font-sans scroll-smooth relative">
         <Navbar />
 
         <div className="pt-24 pb-16">
@@ -566,7 +566,7 @@ export default function App() {
             <Settings aria-hidden="true" className="absolute top-[65%] right-[16%] w-20 h-20 text-gray-600/50 opacity-60 rotate-[-25deg] hidden lg:block pointer-events-none select-none" />
           </section>
 
-          {/* --- Education Section (No functional change) --- */}
+          {/* --- Education Section --- */}
           <section id="education" aria-labelledby="education-heading" className="mb-24 px-[8%]">
             <div className="bg-white/5 p-8 rounded-2xl backdrop-blur-sm border border-white/10 shadow-lg">
               <h2 id="education-heading" className="text-4xl font-bold text-center mb-10 text-purple-300 flex items-center justify-center gap-3">
@@ -593,7 +593,7 @@ export default function App() {
             </div>
           </section>
 
-          {/* --- Notable EC Projects (No functional change) --- */}
+          {/* --- Notable EC Projects --- */}
           <section id="ec-projects" aria-labelledby="ec-projects-heading" className="mb-24 px-[8%]">
             <div className="bg-white/5 p-8 rounded-2xl backdrop-blur-sm border border-white/10 shadow-lg">
               <h2 id="ec-projects-heading" className="text-4xl font-bold text-center mb-10 text-purple-300">EC Adventures: Sparks & Chaos ⚡</h2>
@@ -611,7 +611,7 @@ export default function App() {
             </div>
           </section>
 
-          {/* --- Notable IT Projects (No functional change) --- */}
+          {/* --- Notable IT Projects --- */}
           <section id="it-projects" aria-labelledby="it-projects-heading" className="mb-24 px-[8%]">
             <div className="bg-white/5 p-8 rounded-2xl backdrop-blur-sm border border-white/10 shadow-lg">
               <h2 id="it-projects-heading" className="text-4xl font-bold text-center mb-10 text-purple-300">IT Expeditions: Code & Pixels 💻</h2>
@@ -629,7 +629,7 @@ export default function App() {
             </div>
           </section>
 
-          {/* --- Certifications & Trainings Section (No functional change) --- */}
+          {/* --- Certifications & Trainings Section --- */}
           <section id="certifications" aria-labelledby="certs-heading" className="mb-24 px-[8%]">
             <div className="bg-gradient-to-br from-gray-900/70 to-black/80 p-8 rounded-2xl backdrop-blur-sm border border-white/10 shadow-lg relative overflow-hidden">
               <h2 id="certs-heading" className="text-4xl font-bold text-center mb-4 text-purple-300 flex items-center justify-center gap-3 z-10 relative">
@@ -668,7 +668,7 @@ export default function App() {
             </div>
           </section>
 
-          {/* --- My Battle Gear (No functional change) --- */}
+          {/* --- My Battle Gear --- */}
           <section id="battlegear" aria-labelledby="battlegear-heading" className="mb-24 px-[8%]">
             <div className="bg-white/5 p-8 rounded-2xl backdrop-blur-sm border border-white/10 shadow-lg">
               <h2 id="battlegear-heading" className="text-4xl font-bold text-center mb-10 text-purple-300 flex items-center justify-center gap-3">
@@ -687,7 +687,7 @@ export default function App() {
             </div>
           </section>
 
-          {/* --- Let's Connect (No functional change) --- */}
+          {/* --- Let's Connect --- */}
           <section id="contact" aria-labelledby="contact-heading" className="mb-8 px-[8%]">
             <div className="bg-gradient-to-r from-purple-800/40 to-pink-800/40 p-10 rounded-2xl backdrop-blur-sm text-center border border-white/10 shadow-lg hover:shadow-purple-500/30 transition-shadow duration-300">
               <h2 id="contact-heading" className="text-4xl font-bold mb-6 text-white">Let's have ☕ chai, together! (Virtually? No Problem!)</h2>
@@ -713,12 +713,30 @@ export default function App() {
 
         </div> {/* End pt-24 wrapper */}
 
-        {/* Footer (No functional change) */}
+        {/* Footer */}
         <footer className="py-8 text-center text-gray-500 text-sm border-t border-white/10">
           <p>Forged with React, Tailwind, & unhealthy amounts of Chai. <Coffee className="inline w-4 h-4 text-orange-400 align-baseline" aria-label="coffee icon" /></p>
           <p>© {new Date().getFullYear()} Supratim Mondal. All shenanigans reserved.</p>
         </footer>
+
+        {/* --- Floating Action Button (FAB) --- */}
+        <button
+          onClick={() => setIsChatModalOpen(true)}
+          // Added animate-pulse-glow class for periodic animation
+          className="fixed bottom-6 right-6 bg-gradient-to-r from-purple-600 to-pink-600 text-white p-4 rounded-full shadow-lg hover:scale-110 hover:shadow-xl focus:outline-none focus:ring-2 focus:ring-purple-400 focus:ring-offset-2 focus:ring-offset-gray-900 transition-all duration-300 z-50 animate-pulse-glow"
+          aria-label="Ask about Supratim"
+          title="Ask about Supratim"
+        >
+          <Sparkles className="w-6 h-6" />
+        </button>
+
+        {/* --- Render Chat Modal Component --- */}
+        <ChatBot
+          isOpen={isChatModalOpen}
+          onClose={() => setIsChatModalOpen(false)}
+        />
+
       </div>
-    </HelmetProvider> // Close HelmetProvider
+    </HelmetProvider>
   );
 }
