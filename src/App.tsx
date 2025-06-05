@@ -432,11 +432,10 @@ export default function App() {
                   <div className="flex items-center gap-2 bg-gray-800/50 rounded-full px-4 py-2 border border-green-500/30">
                     <MapPin className="w-4 h-4 text-green-400" />
                     <span>Sainthia, West Bengal</span>
-                  </div>
-                  <div className="flex items-center gap-2 bg-gray-800/50 rounded-full px-4 py-2 border border-blue-500/30">
-                    <div className="w-3 h-3 bg-green-400 rounded-full animate-pulse"></div>
+                  </div>                  <div className="flex items-center gap-2 bg-gray-800/50 rounded-full px-4 py-2 border border-blue-500/30">
+                    <div className="w-3 h-3 bg-green-400 rounded-full"></div>
                     <span>Available for chaos</span>
-                  </div>                  <div className="flex items-center gap-2 bg-gray-800/50 rounded-full px-4 py-2 border border-purple-500/30">
+                  </div><div className="flex items-center gap-2 bg-gray-800/50 rounded-full px-4 py-2 border border-purple-500/30">
                     <Coffee className="w-4 h-4 text-orange-400" />
                     <span>Chai level: Maximum</span>
                   </div>
@@ -534,34 +533,29 @@ export default function App() {
                 </div>
               </div>
             </div>
-          </div>
-
-          {/* Enhanced Scroll Indicator */}
-          <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 animate-bounce">
+          </div>          {/* Enhanced Scroll Indicator - static */}
+          <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2">
             <div className="flex flex-col items-center gap-2">
               <span className="text-gray-400 text-sm">Scroll for more chaos</span>
               <ChevronDown className="w-6 h-6 text-gray-400" />
             </div>
-          </div>
-
-          {/* Enhanced Background Elements */}
+          </div>{/* Enhanced Background Elements - static */}
           <div className="absolute top-20 right-10 w-32 h-32 text-green-500/10">
-            <CircuitBoard className="w-full h-full animate-float" />
+            <CircuitBoard className="w-full h-full" />
           </div>
           <div className="absolute bottom-20 left-10 w-24 h-24 text-blue-500/10">
-            <Cpu className="w-full h-full animate-float animation-delay-1000" />
+            <Cpu className="w-full h-full" />
           </div>
           <div className="absolute top-1/2 right-1/4 w-16 h-16 text-purple-500/10">
-            <Lightbulb className="w-full h-full animate-pulse" />
+            <Lightbulb className="w-full h-full" />
           </div>
         </section>
 
         {/* About Section - Enhanced with more personality */}
         <section id="about" className="py-20 bg-gray-800/50 relative">
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-            <div className="text-center mb-16">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">            <div className="text-center mb-16">
               <h2 className="text-4xl font-bold text-white mb-4">
-                About Me <Flame className="inline w-8 h-8 text-orange-400 animate-bounce" />
+                About Me <Flame className="inline w-8 h-8 text-orange-400" />
               </h2>
               <p className="text-xl text-gray-400 max-w-3xl mx-auto">
                 A passionate Electronics Engineering student who loves building things that shouldn't work but somehow do.
@@ -571,25 +565,23 @@ export default function App() {
             </div>
 
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-              {/* Left - Enhanced Image placeholder */}
-              <div className="relative">
-                <div className="aspect-square bg-gradient-to-br from-green-500 to-blue-600 rounded-2xl p-1 hover:scale-105 transition-transform duration-300">
+              {/* Left - Enhanced Image placeholder */}              <div className="relative">
+                <div className="aspect-square bg-gradient-to-br from-green-500 to-blue-600 rounded-2xl p-1 transition-transform duration-300">
                   <div className="w-full h-full bg-gray-800 rounded-xl flex items-center justify-center relative overflow-hidden">
-                    <div className="text-center space-y-4 relative z-10">
-                      <Coffee className="w-16 h-16 text-orange-400 mx-auto animate-bounce" />
+                    <div className="text-center space-y-4 relative z-10">                      <Coffee className="w-16 h-16 text-orange-400 mx-auto" />
                       <p className="text-gray-300">Fueled by chai ☕</p>
                       <div className="flex justify-center gap-2">
-                        <Star className="w-4 h-4 text-yellow-400 animate-pulse" />
-                        <Star className="w-4 h-4 text-yellow-400 animate-pulse" style={{ animationDelay: '0.2s' }} />
-                        <Star className="w-4 h-4 text-yellow-400 animate-pulse" style={{ animationDelay: '0.4s' }} />
+                        <Star className="w-4 h-4 text-yellow-400" />
+                        <Star className="w-4 h-4 text-yellow-400" />
+                        <Star className="w-4 h-4 text-yellow-400" />
                       </div>
                     </div>
-                    {/* Floating elements */}
+                    {/* Static elements */}
                     <div className="absolute top-4 right-4">
-                      <Brain className="w-6 h-6 text-purple-400/50 animate-pulse" />
+                      <Brain className="w-6 h-6 text-purple-400/50" />
                     </div>
                     <div className="absolute bottom-4 left-4">
-                      <Zap className="w-6 h-6 text-yellow-400/50 animate-bounce" />
+                      <Zap className="w-6 h-6 text-yellow-400/50" />
                     </div>
                   </div>
                 </div>
@@ -597,10 +589,9 @@ export default function App() {
 
               {/* Right - Enhanced About content */}
               <div className="space-y-6">
-                <div className="space-y-4">
-                  <h3 className="text-2xl font-bold text-white flex items-center gap-2">
+                <div className="space-y-4">                  <h3 className="text-2xl font-bold text-white flex items-center gap-2">
                     The Journey So Far 
-                    <Rocket className="w-6 h-6 text-blue-400 animate-pulse" />
+                    <Rocket className="w-6 h-6 text-blue-400" />
                   </h3>
                   <div className="space-y-4 text-gray-300">
                     <p>
@@ -622,17 +613,15 @@ export default function App() {
                 </div>
 
                 {/* Enhanced Quick Facts */}
-                <div className="bg-gray-900/50 rounded-lg p-6 border border-gray-700 hover:border-green-500/50 transition-colors duration-300">
-                  <h4 className="text-lg font-semibold text-white mb-4 flex items-center gap-2">
-                    Quick Facts <Eye className="w-5 h-5 text-blue-400 animate-pulse" />
+                <div className="bg-gray-900/50 rounded-lg p-6 border border-gray-700 hover:border-green-500/50 transition-colors duration-300">                  <h4 className="text-lg font-semibold text-white mb-4 flex items-center gap-2">
+                    Quick Facts <Eye className="w-5 h-5 text-blue-400" />
                   </h4>
                   <ul className="space-y-3 text-gray-300">
                     <li className="flex items-center gap-2 hover:text-green-400 transition-colors">
                       <CircuitBoard className="w-4 h-4 text-green-400" />
                       <span>MOSFETs sacrificed in the name of learning: 3+ (RIP brave soldiers 🪦)</span>
-                    </li>
-                    <li className="flex items-center gap-2 hover:text-orange-400 transition-colors">
-                      <Coffee className="w-4 h-4 text-orange-400 animate-bounce" />
+                    </li>                    <li className="flex items-center gap-2 hover:text-orange-400 transition-colors">
+                      <Coffee className="w-4 h-4 text-orange-400" />
                       <span>Daily chai consumption: Immeasurable (Bengal approved ✅)</span>
                     </li>
                     <li className="flex items-center gap-2 hover:text-blue-400 transition-colors">
@@ -652,11 +641,10 @@ export default function App() {
 
         {/* Skills Section - Enhanced with animations */}
         <section id="skills" className="py-20 relative">
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-            <div className="text-center mb-16">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">            <div className="text-center mb-16">
               <h2 className="text-4xl font-bold text-white mb-4 flex justify-center items-center gap-3">
                 Skills & Expertise 
-                <Wrench className="w-8 h-8 text-green-400 animate-spin" />
+                <Wrench className="w-8 h-8 text-green-400" />
               </h2>
               <p className="text-xl text-gray-400">
                 My toolkit for turning <span className="text-green-400 font-semibold">ideas into reality</span> 
@@ -671,9 +659,8 @@ export default function App() {
                   <div
                     key={index}
                     className="bg-gray-800/50 rounded-lg p-6 border border-gray-700 hover:border-green-500/50 transition-all duration-300 hover:scale-105 hover:shadow-lg hover:shadow-green-500/20 group"
-                  >
-                    <div className="flex items-center gap-3 mb-6">
-                      <Icon className={`w-6 h-6 ${category.color} group-hover:animate-spin`} />
+                  >                    <div className="flex items-center gap-3 mb-6">
+                      <Icon className={`w-6 h-6 ${category.color}`} />
                       <h3 className="text-xl font-semibold text-white group-hover:text-green-400 transition-colors">
                         {category.category}
                       </h3>
@@ -685,13 +672,11 @@ export default function App() {
                           <div className="flex justify-between items-center">
                             <span className="text-gray-300 group-hover:text-white transition-colors">{skill.name}</span>
                             <span className="text-sm text-gray-400 group-hover:text-green-400 transition-colors">{skill.level}%</span>
-                          </div>
-                          <div className="w-full bg-gray-700 rounded-full h-2 overflow-hidden">
+                          </div>                          <div className="w-full bg-gray-700 rounded-full h-2 overflow-hidden">
                             <div
-                              className="h-2 rounded-full bg-gradient-to-r from-green-500 to-blue-500 transition-all duration-1000 ease-out group-hover:animate-pulse"
+                              className="h-2 rounded-full bg-gradient-to-r from-green-500 to-blue-500 transition-all duration-1000 ease-out"
                               style={{ 
-                                width: `${skill.level}%`,
-                                animationDelay: `${skillIndex * 0.1}s`
+                                width: `${skill.level}%`
                               }}
                             ></div>
                           </div>
@@ -704,10 +689,8 @@ export default function App() {
             </div>
 
             {/* Enhanced Fun Achievements */}
-            <div className="mt-16 bg-gray-800/50 rounded-lg p-8 border border-gray-700 hover:border-purple-500/50 transition-colors duration-300">
-              <h3 className="text-2xl font-bold text-white mb-6 text-center flex justify-center items-center gap-3">
-                Epic Achievements & Glorious Failures 
-                <Trophy className="w-6 h-6 text-yellow-400 animate-bounce" />
+            <div className="mt-16 bg-gray-800/50 rounded-lg p-8 border border-gray-700 hover:border-purple-500/50 transition-colors duration-300">              <h3 className="text-2xl font-bold text-white mb-6 text-center">
+                Epic Achievements & Glorious Failures
               </h3>
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
                 {achievements.map((achievement, index) => (
@@ -728,11 +711,10 @@ export default function App() {
 
         {/* Education Section - Enhanced */}
         <section id="education" className="py-20 bg-gray-800/50 relative">
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-            <div className="text-center mb-16">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">            <div className="text-center mb-16">
               <h2 className="text-4xl font-bold text-white mb-4 flex justify-center items-center gap-3">
                 Education 
-                <GraduationCap className="w-8 h-8 text-blue-400 animate-bounce" />
+                <GraduationCap className="w-8 h-8 text-blue-400" />
               </h2>
               <p className="text-xl text-gray-400">
                 My academic journey and learning milestones 
@@ -749,9 +731,8 @@ export default function App() {
                     className="bg-gray-900/50 rounded-lg p-8 border border-gray-700 hover:border-green-500/50 transition-all duration-300 hover:scale-105 hover:shadow-lg hover:shadow-green-500/20 group"
                   >
                     <div className="flex flex-col md:flex-row gap-6">
-                      <div className="flex-shrink-0">
-                        <div className="w-16 h-16 bg-green-500/20 rounded-lg flex items-center justify-center group-hover:bg-green-500/30 transition-colors">
-                          <Icon className="w-8 h-8 text-green-400 group-hover:animate-bounce" />
+                      <div className="flex-shrink-0">                        <div className="w-16 h-16 bg-green-500/20 rounded-lg flex items-center justify-center group-hover:bg-green-500/30 transition-colors">
+                          <Icon className="w-8 h-8 text-green-400" />
                         </div>
                       </div>
                       
@@ -762,10 +743,9 @@ export default function App() {
                         <p className="text-green-400 font-medium mb-1">{edu.institution}</p>
                         <p className="text-gray-400 text-sm mb-4">{edu.period}</p>
                         
-                        <ul className="space-y-2">
-                          {edu.details.map((detail, i) => (
+                        <ul className="space-y-2">                          {edu.details.map((detail, i) => (
                             <li key={i} className="text-gray-300 flex items-start gap-2 group-hover:text-white transition-colors">
-                              <span className="text-green-400 mt-1 animate-pulse">•</span>
+                              <span className="text-green-400 mt-1">•</span>
                               {detail}
                             </li>
                           ))}
@@ -781,11 +761,10 @@ export default function App() {
 
         {/* Projects Section - Enhanced with more personality */}
         <section id="projects" className="py-20 relative">
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-            <div className="text-center mb-16">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">            <div className="text-center mb-16">
               <h2 className="text-4xl font-bold text-white mb-4 flex justify-center items-center gap-3">
                 Featured Projects 
-                <Rocket className="w-8 h-8 text-purple-400 animate-pulse" />
+                <Briefcase className="w-8 h-8 text-purple-400" />
               </h2>
               <p className="text-xl text-gray-400">
                 A collection of my adventures in hardware and software 
@@ -801,9 +780,8 @@ export default function App() {
                   className="bg-gray-800/50 rounded-lg border border-gray-700 hover:border-green-500/50 transition-all duration-300 hover:scale-105 group overflow-hidden"
                 >
                   <div className="p-6">
-                    <div className="flex items-start justify-between mb-4">
-                      <div className="flex items-center gap-3">
-                        <div className="group-hover:animate-spin">
+                    <div className="flex items-start justify-between mb-4">                      <div className="flex items-center gap-3">
+                        <div>
                           {project.icon}
                         </div>
                         <div>
@@ -812,8 +790,7 @@ export default function App() {
                           </h3>
                           <span className="text-sm text-gray-400">{project.type}</span>
                         </div>
-                      </div>
-                      <span className={`text-sm px-2 py-1 rounded-full bg-gray-700 ${project.statusColor} group-hover:animate-pulse`}>
+                      </div>                      <span className={`text-sm px-2 py-1 rounded-full bg-gray-700 ${project.statusColor}`}>
                         {project.status}
                       </span>
                     </div>
@@ -835,15 +812,13 @@ export default function App() {
                     </div>
 
                     {/* Challenges */}
-                    <div className="mb-4">
-                      <h4 className="text-sm font-medium text-yellow-400 mb-2 flex items-center gap-1">
+                    <div className="mb-4">                      <h4 className="text-sm font-medium text-yellow-400 mb-2 flex items-center gap-1">
                         Key Challenges:
-                        <Flame className="w-3 h-3 animate-pulse" />
+                        <Flame className="w-3 h-3" />
                       </h4>
                       <ul className="text-xs text-gray-400 space-y-1">
-                        {project.challenges.map((challenge, i) => (
-                          <li key={i} className="flex items-start gap-1 hover:text-gray-300 transition-colors">
-                            <span className="text-red-400 animate-pulse">•</span>
+                        {project.challenges.map((challenge, i) => (                          <li key={i} className="flex items-start gap-1 hover:text-gray-300 transition-colors">
+                            <span className="text-red-400">•</span>
                             <span>{challenge}</span>
                           </li>
                         ))}
@@ -851,20 +826,18 @@ export default function App() {
                     </div>
 
                     {/* Learnings */}
-                    <div className="mb-4">
-                      <h4 className="text-sm font-medium text-blue-400 mb-2 flex items-center gap-1">
+                    <div className="mb-4">                      <h4 className="text-sm font-medium text-blue-400 mb-2 flex items-center gap-1">
                         Key Learnings:
-                        <Brain className="w-3 h-3 animate-pulse" />
+                        <Brain className="w-3 h-3" />
                       </h4>
                       <p className="text-xs text-gray-400 group-hover:text-gray-300 transition-colors">{project.learnings}</p>
                     </div>
 
                     {/* Fun Fact */}
                     {project.funFact && (
-                      <div className="mb-4 bg-purple-500/10 rounded-lg p-3 border border-purple-500/20">
-                        <h4 className="text-sm font-medium text-purple-400 mb-1 flex items-center gap-1">
+                      <div className="mb-4 bg-purple-500/10 rounded-lg p-3 border border-purple-500/20">                        <h4 className="text-sm font-medium text-purple-400 mb-1 flex items-center gap-1">
                           Fun Fact:
-                          <Star className="w-3 h-3 animate-pulse" />
+                          <Star className="w-3 h-3" />
                         </h4>
                         <p className="text-xs text-purple-300">{project.funFact}</p>
                       </div>
@@ -904,24 +877,21 @@ export default function App() {
 
         {/* Contact Section - Enhanced */}
         <section id="contact" className="py-20 bg-gray-800/50 relative">
-          <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-10">
-            <h2 className="text-4xl font-bold text-white mb-6 flex justify-center items-center gap-3">
+          <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-10">            <h2 className="text-4xl font-bold text-white mb-6 flex justify-center items-center gap-3">
               Let's Build Something Amazing 
-              <Heart className="w-8 h-8 text-red-400 animate-pulse" />
+              <Heart className="w-8 h-8 text-red-400" />
             </h2>
             <p className="text-xl text-gray-400 mb-12 max-w-2xl mx-auto">
               Have an interesting project? Want to collaborate? Or just want to chat about circuits and chai? 
-              <br />
-              <span className="text-green-400 font-semibold">I'd love to hear from you!</span>
-              <Coffee className="inline w-5 h-5 text-orange-400 ml-2 animate-bounce" />
+              <br />              <span className="text-green-400 font-semibold">I'd love to hear from you!</span>
+              <Coffee className="inline w-5 h-5 text-orange-400 ml-2" />
             </p>
 
             <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-12">
               <a
                 href="mailto:supratimrk@outlook.com"
                 className="bg-gray-900/50 rounded-lg p-6 border border-gray-700 hover:border-green-500/50 transition-all duration-300 group hover:scale-105 hover:shadow-lg hover:shadow-green-500/20"
-              >
-                <Mail className="w-8 h-8 text-green-400 mx-auto mb-4 group-hover:animate-bounce" />
+              >                <Mail className="w-8 h-8 text-green-400 mx-auto mb-4" />
                 <h3 className="text-lg font-semibold text-white mb-2 group-hover:text-green-400 transition-colors">Email Me</h3>
                 <p className="text-gray-400 text-sm">supratimrk@outlook.com</p>
                 <div className="mt-2 text-xs text-green-400 opacity-0 group-hover:opacity-100 transition-opacity">
@@ -934,8 +904,7 @@ export default function App() {
                 target="_blank"
                 rel="noopener noreferrer"
                 className="bg-gray-900/50 rounded-lg p-6 border border-gray-700 hover:border-green-500/50 transition-all duration-300 group hover:scale-105 hover:shadow-lg hover:shadow-green-500/20"
-              >
-                <Github className="w-8 h-8 text-green-400 mx-auto mb-4 group-hover:animate-spin" />
+              >                <Github className="w-8 h-8 text-green-400 mx-auto mb-4" />
                 <h3 className="text-lg font-semibold text-white mb-2 group-hover:text-green-400 transition-colors">GitHub</h3>
                 <p className="text-gray-400 text-sm">Check out my code</p>
                 <div className="mt-2 text-xs text-green-400 opacity-0 group-hover:opacity-100 transition-opacity">
@@ -948,8 +917,7 @@ export default function App() {
                 target="_blank"
                 rel="noopener noreferrer"
                 className="bg-gray-900/50 rounded-lg p-6 border border-gray-700 hover:border-green-500/50 transition-all duration-300 group hover:scale-105 hover:shadow-lg hover:shadow-green-500/20"
-              >
-                <Twitter className="w-8 h-8 text-green-400 mx-auto mb-4 group-hover:animate-bounce" />
+              >                <Twitter className="w-8 h-8 text-green-400 mx-auto mb-4" />
                 <h3 className="text-lg font-semibold text-white mb-2 group-hover:text-green-400 transition-colors">Twitter</h3>
                 <p className="text-gray-400 text-sm">Follow my journey</p>
                 <div className="mt-2 text-xs text-green-400 opacity-0 group-hover:opacity-100 transition-opacity">
@@ -958,19 +926,16 @@ export default function App() {
               </a>
             </div>
 
-            <div className="bg-gradient-to-r from-green-500/20 to-blue-500/20 rounded-lg p-8 border border-green-500/30 hover:border-green-500/50 transition-colors duration-300">
-              <h3 className="text-2xl font-bold text-white mb-4 flex justify-center items-center gap-2">
+            <div className="bg-gradient-to-r from-green-500/20 to-blue-500/20 rounded-lg p-8 border border-green-500/30 hover:border-green-500/50 transition-colors duration-300">              <h3 className="text-2xl font-bold text-white mb-4 flex justify-center items-center gap-2">
                 Current Status 
-                <Radio className="w-6 h-6 text-green-400 animate-pulse" />
-              </h3>
-              <div className="flex items-center justify-center gap-2 text-green-400 mb-4">
-                <div className="w-3 h-3 bg-green-400 rounded-full animate-pulse"></div>
+                <Radio className="w-6 h-6 text-green-400" />
+              </h3>              <div className="flex items-center justify-center gap-2 text-green-400 mb-4">
+                <div className="w-3 h-3 bg-green-400 rounded-full"></div>
                 <span className="font-medium">Available for opportunities (and interesting conversations)</span>
               </div>
-              <p className="text-gray-300">
-                I'm actively seeking internship opportunities and exciting projects to work on. 
+              <p className="text-gray-300">                I'm actively seeking internship opportunities and exciting projects to work on. 
                 Let's create something extraordinary together! 
-                <Rocket className="inline w-5 h-5 text-purple-400 ml-2 animate-bounce" />
+                <Rocket className="inline w-5 h-5 text-purple-400 ml-2" />
               </p>
             </div>
           </div>
@@ -979,11 +944,10 @@ export default function App() {
         {/* Enhanced Footer */}
         <footer className="py-8 text-center text-gray-500 text-sm border-t border-gray-700 relative">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-            <div className="flex flex-col md:flex-row justify-between items-center gap-4">
-              <div className="flex items-center gap-2">
-                <Coffee className="w-4 h-4 text-orange-400 animate-bounce" />
+            <div className="flex flex-col md:flex-row justify-between items-center gap-4">              <div className="flex items-center gap-2">
+                <Coffee className="w-4 h-4 text-orange-400" />
                 <span>Forged with React, Tailwind, & unhealthy amounts of chai</span>
-                <Heart className="w-4 h-4 text-red-400 animate-pulse" />
+                <Heart className="w-4 h-4 text-red-400" />
               </div>
               <p>© {new Date().getFullYear()} Supratim Mondal. All circuits reserved. ⚡</p>
             </div>
@@ -995,13 +959,12 @@ export default function App() {
           </div>
         </footer>
 
-        {/* Enhanced Floating Action Button */}
-        <button
+        {/* Enhanced Floating Action Button */}        <button
           onClick={() => setIsChatModalOpen(true)}
-          className="fixed bottom-6 right-6 bg-gradient-to-r from-green-500 to-blue-500 text-white p-4 rounded-full shadow-lg hover:scale-110 hover:shadow-xl focus:outline-none focus:ring-2 focus:ring-green-400 focus:ring-offset-2 focus:ring-offset-gray-900 transition-all duration-300 z-50 animate-pulse-glow group"
+          className="fixed bottom-6 right-6 bg-gradient-to-r from-green-500 to-blue-500 text-white p-4 rounded-full shadow-lg hover:scale-110 hover:shadow-xl focus:outline-none focus:ring-2 focus:ring-green-400 focus:ring-offset-2 focus:ring-offset-gray-900 transition-all duration-300 z-50 group"
           aria-label="Chat with AI Assistant"
         >
-          <Sparkles className="w-6 h-6 group-hover:animate-spin" />
+          <Sparkles className="w-6 h-6" />
         </button>
 
         {/* Chat Modal */}
