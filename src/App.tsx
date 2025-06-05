@@ -282,7 +282,7 @@ const education = [
     period: "2022 - Present",
     icon: Building,
     details: [
-      "CGPA: 8.2/10 (Still surviving the academic battlefield! 🏁)",
+      "CGPA: 6.9/10 (Still surviving the academic battlefield! 🏁)",
       "Relevant Coursework: Embedded Systems, Signal Processing, VLSI Design",
       "Lab Champion: Where theory meets smoke alarms and occasional explosions 🔥",
       "Special Skill: Making professors question their life choices 🤔",
@@ -294,7 +294,7 @@ const education = [
     period: "2019 - 2021",
     icon: School,
     details: [
-      "Percentage: 94.2% (Back when I thought I had life figured out 📚)",
+      "Percentage: 69.69% (Back when I thought I had life figured out 📚)",
       "Stream: Science (PCM + Computer)",
       "First encounter with resistors and capacitors (Love at first sight ⚡)",
       "Discovered that 'Engineering' was my calling (Or so I thought... 😅)",
