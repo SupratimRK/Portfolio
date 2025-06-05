@@ -533,27 +533,27 @@ export default function App() {
                 </div>
               </div>
             </div>
-          </div>          {/* Enhanced Scroll Indicator - static */}
-          <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2">
+          </div>          {/* Enhanced Scroll Indicator - with subtle animations */}
+          <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 animate-fade-in-up" style={{ animationDelay: '1s' }}>
             <div className="flex flex-col items-center gap-2">
-              <span className="text-gray-400 text-sm">Scroll for more chaos</span>
-              <ChevronDown className="w-6 h-6 text-gray-400" />
+              <span className="text-gray-400 text-sm animate-pulse">Scroll for more chaos</span>
+              <ChevronDown className="w-6 h-6 text-gray-400 animate-bounce" style={{ animationDuration: '2s' }} />
             </div>
-          </div>{/* Enhanced Background Elements - static */}
-          <div className="absolute top-20 right-10 w-32 h-32 text-green-500/10">
+          </div>          {/* Enhanced Background Elements - with subtle float animations */}
+          <div className="absolute top-20 right-10 w-32 h-32 text-green-500/10 animate-float" style={{ animationDuration: '6s' }}>
             <CircuitBoard className="w-full h-full" />
           </div>
-          <div className="absolute bottom-20 left-10 w-24 h-24 text-blue-500/10">
+          <div className="absolute bottom-20 left-10 w-24 h-24 text-blue-500/10 animate-float" style={{ animationDuration: '4s', animationDelay: '1s' }}>
             <Cpu className="w-full h-full" />
           </div>
-          <div className="absolute top-1/2 right-1/4 w-16 h-16 text-purple-500/10">
+          <div className="absolute top-1/2 right-1/4 w-16 h-16 text-purple-500/10 animate-float" style={{ animationDuration: '5s', animationDelay: '2s' }}>
             <Lightbulb className="w-full h-full" />
           </div>
         </section>
 
         {/* About Section - Enhanced with more personality */}
         <section id="about" className="py-20 bg-gray-800/50 relative">
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">            <div className="text-center mb-16">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">            <div className="text-center mb-16 animate-fade-in-up">
               <h2 className="text-4xl font-bold text-white mb-4">
                 About Me <Flame className="inline w-8 h-8 text-orange-400" />
               </h2>
@@ -641,7 +641,7 @@ export default function App() {
 
         {/* Skills Section - Enhanced with animations */}
         <section id="skills" className="py-20 relative">
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">            <div className="text-center mb-16">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">            <div className="text-center mb-16 animate-fade-in-up">
               <h2 className="text-4xl font-bold text-white mb-4 flex justify-center items-center gap-3">
                 Skills & Expertise 
                 <Wrench className="w-8 h-8 text-green-400" />
@@ -711,7 +711,7 @@ export default function App() {
 
         {/* Education Section - Enhanced */}
         <section id="education" className="py-20 bg-gray-800/50 relative">
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">            <div className="text-center mb-16">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">            <div className="text-center mb-16 animate-fade-in-up">
               <h2 className="text-4xl font-bold text-white mb-4 flex justify-center items-center gap-3">
                 Education 
                 <GraduationCap className="w-8 h-8 text-blue-400" />
@@ -761,7 +761,7 @@ export default function App() {
 
         {/* Projects Section - Enhanced with more personality */}
         <section id="projects" className="py-20 relative">
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">            <div className="text-center mb-16">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">            <div className="text-center mb-16 animate-fade-in-up">
               <h2 className="text-4xl font-bold text-white mb-4 flex justify-center items-center gap-3">
                 Featured Projects 
                 <Briefcase className="w-8 h-8 text-purple-400" />
@@ -877,9 +877,9 @@ export default function App() {
 
         {/* Contact Section - Enhanced */}
         <section id="contact" className="py-20 bg-gray-800/50 relative">
-          <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-10">            <h2 className="text-4xl font-bold text-white mb-6 flex justify-center items-center gap-3">
+          <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-10">            <h2 className="text-4xl font-bold text-white mb-6 flex justify-center items-center gap-3 animate-fade-in-up">
               Let's Build Something Amazing 
-              <Heart className="w-8 h-8 text-red-400" />
+              <Heart className="w-8 h-8 text-red-400 animate-pulse" style={{ animationDuration: '2s' }} />
             </h2>
             <p className="text-xl text-gray-400 mb-12 max-w-2xl mx-auto">
               Have an interesting project? Want to collaborate? Or just want to chat about circuits and chai? 
@@ -957,15 +957,34 @@ export default function App() {
               </GlitchText>
             </div>
           </div>
-        </footer>
-
-        {/* Enhanced Floating Action Button */}        <button
-          onClick={() => setIsChatModalOpen(true)}
-          className="fixed bottom-6 right-6 bg-gradient-to-r from-green-500 to-blue-500 text-white p-4 rounded-full shadow-lg hover:scale-110 hover:shadow-xl focus:outline-none focus:ring-2 focus:ring-green-400 focus:ring-offset-2 focus:ring-offset-gray-900 transition-all duration-300 z-50 group"
-          aria-label="Chat with AI Assistant"
-        >
-          <Sparkles className="w-6 h-6" />
-        </button>
+        </footer>        {/* Enhanced Eye-Catching Floating Action Button */}
+        <div className="fixed bottom-6 right-6 z-50 group">
+          {/* Pulsing background glow */}
+          <div className="absolute inset-0 bg-gradient-to-r from-green-500 to-blue-500 rounded-full blur-lg opacity-75 animate-pulse group-hover:opacity-100 transition-opacity duration-300"></div>
+          
+          {/* Chat Button with enhanced animations */}
+          <button
+            onClick={() => setIsChatModalOpen(true)}
+            className="relative bg-gradient-to-r from-green-500 via-blue-500 to-purple-500 text-white p-4 rounded-full shadow-2xl hover:scale-110 hover:rotate-12 focus:outline-none focus:ring-4 focus:ring-green-400/50 focus:ring-offset-2 focus:ring-offset-gray-900 transition-all duration-500 group animate-bounce"
+            style={{ animationDuration: '3s', animationIterationCount: 'infinite' }}
+            aria-label="Chat with AI Assistant"
+          >            {/* Sparkles icon with rotation */}
+            <Sparkles className="w-6 h-6 group-hover:animate-spin transition-transform duration-700" />
+            
+            {/* Floating mini sparkles around the button */}
+            <div className="absolute -top-1 -right-1 w-3 h-3 bg-yellow-400 rounded-full animate-ping"></div>
+            <div className="absolute -bottom-1 -left-1 w-2 h-2 bg-green-400 rounded-full animate-ping" style={{ animationDelay: '0.5s' }}></div>
+            <div className="absolute top-0 left-0 w-2 h-2 bg-blue-400 rounded-full animate-ping" style={{ animationDelay: '1s' }}></div>
+          </button>
+          
+          {/* Floating tooltip that appears on hover */}
+          <div className="absolute bottom-full right-0 mb-2 opacity-0 group-hover:opacity-100 transition-all duration-300 transform translate-y-2 group-hover:translate-y-0">
+            <div className="bg-gray-800 text-white px-3 py-2 rounded-lg shadow-lg border border-green-500/30 whitespace-nowrap">
+              <span className="text-sm font-medium">Chat with AI Assistant 🤖</span>
+              <div className="absolute top-full right-4 w-0 h-0 border-l-4 border-r-4 border-t-4 border-transparent border-t-gray-800"></div>
+            </div>
+          </div>
+        </div>
 
         {/* Chat Modal */}
         <ChatBot
