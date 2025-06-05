@@ -84,61 +84,123 @@ const TypingEffect = ({ texts, speed = 100, delay = 2000 }: { texts: string[], s
   );
 };
 
-// Simplified Floating Circuit Elements - less animations
+// Floating Circuit Elements
 const FloatingCircuit = () => {
   return (
     <div className="absolute inset-0 overflow-hidden pointer-events-none">
-      {/* Simple static circuit paths */}
-      <svg className="absolute inset-0 w-full h-full opacity-5" viewBox="0 0 1000 1000">
+      {/* Animated circuit paths */}
+      <svg className="absolute inset-0 w-full h-full opacity-10" viewBox="0 0 1000 1000">
         <defs>
           <linearGradient id="circuitGrad" x1="0%" y1="0%" x2="100%" y2="100%">
-            <stop offset="0%" stopColor="#22c55e" stopOpacity="0.6" />
-            <stop offset="50%" stopColor="#3b82f6" stopOpacity="0.4" />
-            <stop offset="100%" stopColor="#8b5cf6" stopOpacity="0.3" />
+            <stop offset="0%" stopColor="#22c55e" stopOpacity="0.8" />
+            <stop offset="50%" stopColor="#3b82f6" stopOpacity="0.6" />
+            <stop offset="100%" stopColor="#8b5cf6" stopOpacity="0.4" />
           </linearGradient>
         </defs>
         
-        {/* Static circuit lines */}
+        {/* Animated circuit lines */}
         <path
           d="M 50 100 L 200 100 L 200 200 L 350 200 L 350 100 L 500 100"
           stroke="url(#circuitGrad)"
-          strokeWidth="1"
+          strokeWidth="2"
           fill="none"
+          className="animate-pulse"
         />
         <path
           d="M 100 300 L 300 300 L 300 450 L 450 450 L 450 300 L 600 300"
           stroke="url(#circuitGrad)"
-          strokeWidth="1"
+          strokeWidth="2"
           fill="none"
+          className="animate-pulse"
+          style={{ animationDelay: '1s' }}
+        />
+        <path
+          d="M 150 600 L 400 600 L 400 750 L 550 750 L 550 600 L 750 600"
+          stroke="url(#circuitGrad)"
+          strokeWidth="2"
+          fill="none"
+          className="animate-pulse"
+          style={{ animationDelay: '2s' }}
         />
         
-        {/* Simple circuit nodes - no animation */}
-        <circle cx="200" cy="100" r="2" fill="#22c55e" opacity="0.6" />
-        <circle cx="350" cy="200" r="2" fill="#3b82f6" opacity="0.6" />
-        <circle cx="450" cy="450" r="2" fill="#8b5cf6" opacity="0.6" />
+        {/* Circuit nodes */}
+        <circle cx="200" cy="100" r="4" fill="#22c55e" className="animate-ping" />
+        <circle cx="350" cy="200" r="4" fill="#3b82f6" className="animate-ping" style={{ animationDelay: '0.5s' }} />
+        <circle cx="450" cy="450" r="4" fill="#8b5cf6" className="animate-ping" style={{ animationDelay: '1s' }} />
+        <circle cx="550" cy="750" r="4" fill="#f59e0b" className="animate-ping" style={{ animationDelay: '1.5s' }} />
       </svg>
     </div>
   );
 };
 
-// Removed Matrix Rain Effect - too distracting
+// Matrix Rain Effect (subtle)
+const MatrixRain = () => {
+  const canvasRef = useRef<HTMLCanvasElement>(null);
 
-// Simplified Glitch Text Effect - less frequent
+  useEffect(() => {
+    const canvas = canvasRef.current;
+    if (!canvas) return;
+
+    const ctx = canvas.getContext('2d');
+    if (!ctx) return;
+
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+
+    const characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789@#$%^&*()';
+    const fontSize = 14;
+    const columns = canvas.width / fontSize;
+    const drops = Array(Math.floor(columns)).fill(1);
+
+    const draw = () => {
+      ctx.fillStyle = 'rgba(0, 0, 0, 0.02)';
+      ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+      ctx.fillStyle = '#22c55e';
+      ctx.font = `${fontSize}px monospace`;
+
+      for (let i = 0; i < drops.length; i++) {
+        const text = characters[Math.floor(Math.random() * characters.length)];
+        ctx.fillText(text, i * fontSize, drops[i] * fontSize);
+
+        if (drops[i] * fontSize > canvas.height && Math.random() > 0.975) {
+          drops[i] = 0;
+        }
+        drops[i]++;
+      }
+    };
+
+    const interval = setInterval(draw, 100);
+    return () => clearInterval(interval);
+  }, []);
+
+  return (
+    <canvas
+      ref={canvasRef}
+      className="fixed inset-0 pointer-events-none opacity-20 z-0"
+    />
+  );
+};
+
+// Glitch Text Effect
 const GlitchText = ({ children, className = "" }: { children: React.ReactNode, className?: string }) => {
   const [isGlitching, setIsGlitching] = useState(false);
 
   useEffect(() => {
     const interval = setInterval(() => {
       setIsGlitching(true);
-      setTimeout(() => setIsGlitching(false), 100);
-    }, 15000); // Much less frequent - every 15 seconds
+      setTimeout(() => setIsGlitching(false), 200);
+    }, 5000);
 
     return () => clearInterval(interval);
   }, []);
 
   return (
     <span 
-      className={`${className} ${isGlitching ? 'text-green-400' : ''} transition-colors duration-100`}
+      className={`${className} ${isGlitching ? 'animate-pulse text-red-400' : ''} transition-colors duration-200`}
+      style={{
+        textShadow: isGlitching ? '2px 0 #ff0000, -2px 0 #00ff00' : 'none'
+      }}
     >
       {children}
     </span>
@@ -161,9 +223,10 @@ function Navbar() {
   return (
     <nav className="fixed top-0 left-0 right-0 z-50 bg-gray-900/95 backdrop-blur-md border-b border-green-500/20">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex justify-between items-center h-16">          {/* Logo */}
+        <div className="flex justify-between items-center h-16">
+          {/* Logo */}
           <div className="flex items-center space-x-2">
-            <CircuitBoard className="w-8 h-8 text-green-400" />
+            <CircuitBoard className="w-8 h-8 text-green-400 animate-pulse" />
             <span className="text-xl font-bold text-gradient-primary">
               <GlitchText>Supratim.dev</GlitchText>
             </span>
@@ -173,10 +236,11 @@ function Navbar() {
           <div className="hidden md:flex items-center space-x-8">
             {navItems.map((item) => {
               const Icon = item.icon;
-              return (                <a
+              return (
+                <a
                   key={item.href}
                   href={item.href}
-                  className="flex items-center space-x-1 text-gray-300 hover:text-green-400 transition-all duration-200 px-3 py-2 rounded-lg hover:bg-green-500/10"
+                  className="flex items-center space-x-1 text-gray-300 hover:text-green-400 transition-all duration-200 px-3 py-2 rounded-lg hover:bg-green-500/10 hover:scale-110"
                 >
                   <Icon className="w-4 h-4" />
                   <span>{item.label}</span>
@@ -187,8 +251,9 @@ function Navbar() {
 
           {/* Mobile menu button */}
           <div className="md:hidden">
-            <button              onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-              className="p-2 rounded-lg text-gray-300 hover:text-green-400 hover:bg-green-500/10 transition-colors"
+            <button
+              onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+              className="p-2 rounded-lg text-gray-300 hover:text-green-400 hover:bg-green-500/10 transition-colors hover:scale-110"
               aria-label="Toggle mobile menu"
             >
               {mobileMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
@@ -384,7 +449,10 @@ export default function App() {
 
         <link rel="icon" href="/tea.svg" type="image/svg+xml" />
         <html lang="en" />
-      </Helmet>      <div className="bg-gray-900 text-white min-h-screen font-sans relative circuit-bg">
+      </Helmet>
+
+      <div className="bg-gray-900 text-white min-h-screen font-sans relative circuit-bg">
+        <MatrixRain />
         <FloatingCircuit />
         <Navbar />
 
@@ -395,10 +463,11 @@ export default function App() {
               
               {/* Left Content */}
               <div className="space-y-8 animate-fade-in-up">
-                <div className="space-y-4">                  <div className="flex items-center space-x-2 text-green-400 font-medium">
-                    <CircuitBoard className="w-5 h-5" />
+                <div className="space-y-4">
+                  <div className="flex items-center space-x-2 text-green-400 font-medium">
+                    <CircuitBoard className="w-5 h-5 animate-spin" />
                     <span>Electronics Engineer & Developer</span>
-                    <Rocket className="w-5 h-5" />
+                    <Rocket className="w-5 h-5 animate-bounce" />
                   </div>
                   
                   <h1 className="text-5xl lg:text-7xl font-bold leading-tight">
@@ -411,7 +480,8 @@ export default function App() {
                     <p className="mb-4">
                       Turning <span className="text-green-400 font-semibold">caffeine into circuits</span> and 
                       <span className="text-blue-400 font-semibold"> bugs into features</span>. 
-                    </p>                    <p className="text-lg">
+                    </p>
+                    <p className="text-lg">
                       Currently: <TypingEffect 
                         texts={[
                           "Building things that shouldn't work but do 🔧",
@@ -420,8 +490,8 @@ export default function App() {
                           "Making MOSFETs cry 😢",
                           "Surviving engineering college 🎓"
                         ]}
-                        speed={100}
-                        delay={5000}
+                        speed={80}
+                        delay={3000}
                       />
                     </p>
                   </div>
@@ -436,56 +506,59 @@ export default function App() {
                   <div className="flex items-center gap-2 bg-gray-800/50 rounded-full px-4 py-2 border border-blue-500/30">
                     <div className="w-3 h-3 bg-green-400 rounded-full animate-pulse"></div>
                     <span>Available for chaos</span>
-                  </div>                  <div className="flex items-center gap-2 bg-gray-800/50 rounded-full px-4 py-2 border border-purple-500/30">
-                    <Coffee className="w-4 h-4 text-orange-400" />
+                  </div>
+                  <div className="flex items-center gap-2 bg-gray-800/50 rounded-full px-4 py-2 border border-purple-500/30">
+                    <Coffee className="w-4 h-4 text-orange-400 animate-bounce" />
                     <span>Chai level: Maximum</span>
                   </div>
                 </div>
 
                 {/* Enhanced CTA Buttons */}
-                <div className="flex flex-wrap gap-4">                  <a
+                <div className="flex flex-wrap gap-4">
+                  <a
                     href="#projects"
-                    className="bg-gradient-to-r from-green-500 to-blue-500 hover:from-green-600 hover:to-blue-600 text-white px-8 py-3 rounded-lg font-medium transition-all duration-300 flex items-center gap-2"
+                    className="bg-gradient-to-r from-green-500 to-blue-500 hover:from-green-600 hover:to-blue-600 text-white px-8 py-3 rounded-lg font-medium transition-all duration-300 flex items-center gap-2 hover:scale-105 hover:shadow-lg hover:shadow-green-500/25"
                   >
                     <Briefcase className="w-5 h-5" />
                     View Projects
-                    <Sparkles className="w-4 h-4" />
+                    <Sparkles className="w-4 h-4 animate-pulse" />
                   </a>
                   <a
                     href="#contact"
-                    className="border border-green-500 text-green-400 hover:bg-green-500 hover:text-white px-8 py-3 rounded-lg font-medium transition-all duration-300 flex items-center gap-2"
+                    className="border border-green-500 text-green-400 hover:bg-green-500 hover:text-white px-8 py-3 rounded-lg font-medium transition-all duration-300 flex items-center gap-2 hover:scale-105 hover:shadow-lg hover:shadow-green-500/25"
                   >
                     <Mail className="w-5 h-5" />
                     Get In Touch
-                    <Heart className="w-4 h-4 text-red-400" />
+                    <Heart className="w-4 h-4 animate-pulse text-red-400" />
                   </a>
                 </div>
 
                 {/* Enhanced Social Links */}
-                <div className="flex items-center gap-4">                  <a
+                <div className="flex items-center gap-4">
+                  <a
                     href="https://github.com/SupratimRK"
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="p-3 bg-gray-800 hover:bg-gray-700 rounded-lg transition-all duration-300"
+                    className="p-3 bg-gray-800 hover:bg-gray-700 rounded-lg transition-all duration-300 hover:scale-110 hover:shadow-lg group"
                     aria-label="GitHub Profile"
                   >
-                    <Github className="w-5 h-5" />
+                    <Github className="w-5 h-5 group-hover:animate-spin" />
                   </a>
                   <a
                     href="https://twitter.com/supratimrk"
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="p-3 bg-gray-800 hover:bg-gray-700 rounded-lg transition-all duration-300"
+                    className="p-3 bg-gray-800 hover:bg-gray-700 rounded-lg transition-all duration-300 hover:scale-110 hover:shadow-lg group"
                     aria-label="Twitter Profile"
                   >
-                    <Twitter className="w-5 h-5" />
+                    <Twitter className="w-5 h-5 group-hover:animate-bounce" />
                   </a>
                   <a
                     href="mailto:supratimrk@outlook.com"
-                    className="p-3 bg-gray-800 hover:bg-gray-700 rounded-lg transition-all duration-300"
+                    className="p-3 bg-gray-800 hover:bg-gray-700 rounded-lg transition-all duration-300 hover:scale-110 hover:shadow-lg group"
                     aria-label="Email Contact"
                   >
-                    <Mail className="w-5 h-5" />
+                    <Mail className="w-5 h-5 group-hover:animate-pulse" />
                   </a>
                 </div>
               </div>
