@@ -165,7 +165,7 @@ function Navbar() {
           <div className="flex items-center space-x-2">
             <CircuitBoard className="w-8 h-8 text-green-400" />
             <span className="text-xl font-bold text-gradient-primary">
-              <GlitchText>Supratim.dev</GlitchText>
+              <GlitchText>Supratim.Circuit</GlitchText>
             </span>
           </div>
 
@@ -779,8 +779,8 @@ export default function App() {
                   key={index}
                   className="bg-gray-800/50 rounded-lg border border-gray-700 hover:border-green-500/50 transition-all duration-300 hover:scale-105 group overflow-hidden"
                 >
-                  <div className="p-6">
-                    <div className="flex items-start justify-between mb-4">                      <div className="flex items-center gap-3">
+                  <div className="p-6">                    <div className="mb-4">
+                      <div className="flex items-center gap-3 mb-3">
                         <div>
                           {project.icon}
                         </div>
@@ -790,9 +790,29 @@ export default function App() {
                           </h3>
                           <span className="text-sm text-gray-400">{project.type}</span>
                         </div>
-                      </div>                      <span className={`text-sm px-2 py-1 rounded-full bg-gray-700 ${project.statusColor}`}>
-                        {project.status}
-                      </span>
+                      </div>
+                      
+                      {/* Enhanced Status Pill - Below project name */}
+                      <div className={`inline-flex items-center gap-2 text-xs px-3 py-1.5 rounded-full font-medium transition-all duration-300 ${
+                        project.status === "Educational Failure" 
+                          ? "bg-red-500/20 text-red-300 border border-red-500/30 hover:bg-red-500/30" 
+                          : project.status === "Works Sometimes"
+                          ? "bg-yellow-500/20 text-yellow-300 border border-yellow-500/30 hover:bg-yellow-500/30"
+                          : project.status === "Live & Kicking"
+                          ? "bg-green-500/20 text-green-300 border border-green-500/30 hover:bg-green-500/30"
+                          : "bg-blue-500/20 text-blue-300 border border-blue-500/30 hover:bg-blue-500/30"
+                      }`}>
+                        <div className={`w-2 h-2 rounded-full animate-pulse ${
+                          project.status === "Educational Failure" 
+                            ? "bg-red-400" 
+                            : project.status === "Works Sometimes"
+                            ? "bg-yellow-400"
+                            : project.status === "Live & Kicking"
+                            ? "bg-green-400"
+                            : "bg-blue-400"
+                        }`}></div>
+                        <span>{project.status}</span>
+                      </div>
                     </div>
 
                     <p className="text-gray-300 text-sm mb-4 leading-relaxed group-hover:text-white transition-colors">
@@ -969,7 +989,7 @@ export default function App() {
             style={{ animationDuration: '3s', animationIterationCount: 'infinite' }}
             aria-label="Chat with AI Assistant"
           >            {/* Sparkles icon with rotation */}
-            <Sparkles className="w-6 h-6 group-hover:animate-spin transition-transform duration-700" />
+            <Sparkles className="w-6 h-6 group-hover:rotate-[90deg] transition-transform duration-700" />
             
             {/* Floating mini sparkles around the button */}
             <div className="absolute -top-1 -right-1 w-3 h-3 bg-yellow-400 rounded-full animate-ping"></div>

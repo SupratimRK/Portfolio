@@ -6,10 +6,10 @@ interface ChatBotProps {
     onClose: () => void;
 }
 
-// --- Helper Function for Typing Animation ---
+// --- Helper Function for Enhanced Typing Animation ---
 const useTypingEffect = (
     fullText: string,
-    speed = 30,
+    speed = 25, // Faster typing
     onComplete: () => void
 ): [string, () => void] => {
     const [typedText, setTypedText] = useState('');
@@ -25,8 +25,28 @@ const useTypingEffect = (
 
         intervalRef.current = setInterval(() => {
             if (textIndexRef.current < fullTextRef.current.length) {
-                setTypedText((prev) => prev + fullTextRef.current[textIndexRef.current]);
+                const char = fullTextRef.current[textIndexRef.current];
+                setTypedText((prev) => prev + char);
                 textIndexRef.current++;
+                
+                // Add variable speed for more natural typing
+                const nextSpeed = char === '.' || char === '!' || char === '?' ? speed * 3 : 
+                                char === ',' || char === ';' ? speed * 2 : speed;
+                
+                if (intervalRef.current) {
+                    clearInterval(intervalRef.current);
+                    intervalRef.current = setInterval(() => {
+                        if (textIndexRef.current < fullTextRef.current.length) {
+                            const nextChar = fullTextRef.current[textIndexRef.current];
+                            setTypedText((prev) => prev + nextChar);
+                            textIndexRef.current++;
+                        } else {
+                            if (intervalRef.current) clearInterval(intervalRef.current);
+                            intervalRef.current = null;
+                            onComplete();
+                        }
+                    }, speed);
+                }
             } else {
                 if (intervalRef.current) clearInterval(intervalRef.current);
                 intervalRef.current = null;
@@ -63,9 +83,7 @@ export default function ChatBot({ isOpen, onClose }: ChatBotProps) {
 
     // State to manage which message is currently being typed
     const [currentTypingIndex, setCurrentTypingIndex] = useState<number | null>(null);
-    const [currentFullText, setCurrentFullText] = useState<string>('');
-
-    const [displayedText] = useTypingEffect(currentFullText, 30, () => {
+    const [currentFullText, setCurrentFullText] = useState<string>('');    const [displayedText] = useTypingEffect(currentFullText, 25, () => {
         // When typing for the current message completes, finalize it in history
         if (currentTypingIndex !== null) {
             setChatHistory(prev =>
@@ -108,29 +126,28 @@ export default function ChatBot({ isOpen, onClose }: ChatBotProps) {
                     message: messageToSend,
                     history: currentHistory.slice(0, -1).filter(msg => !('isTyping' in msg) || !msg.isTyping)
                 }),
-            });
+            });                            if (!response.ok) {
+                                throw new Error(`HTTP error! status: ${response.status}`);
+                            }
 
-            if (!response.ok) {
-                throw new Error(`HTTP error! status: ${response.status}`);
-            }
+                            const data = await response.json();
+                            
+                            if (data.error) {
+                                throw new Error(data.error);
+                            }
 
-            const data = await response.json();
-            
-            if (data.error) {
-                throw new Error(data.error);
-            }
+                            setIsLoadingChat(false);
+                            // Clean up the response text to remove extra whitespace and blank lines
+                            const fullResponseText = data.response.trim().replace(/\n\s*\n\s*\n/g, '\n\n');
 
-            setIsLoadingChat(false);
-            const fullResponseText = data.response;
+                            // Add placeholder for the new model message
+                            const modelMessagePlaceholder = { role: 'model' as const, text: '', isTyping: true, fullText: fullResponseText };
+                            const nextHistory = [...currentHistory, modelMessagePlaceholder];
+                            setChatHistory(nextHistory);
 
-            // Add placeholder for the new model message
-            const modelMessagePlaceholder = { role: 'model' as const, text: '', isTyping: true, fullText: fullResponseText };
-            const nextHistory = [...currentHistory, modelMessagePlaceholder];
-            setChatHistory(nextHistory);
-
-            // Set state to trigger typing effect for the last message
-            setCurrentTypingIndex(nextHistory.length - 1);
-            setCurrentFullText(fullResponseText);
+                            // Set state to trigger typing effect for the last message
+                            setCurrentTypingIndex(nextHistory.length - 1);
+                            setCurrentFullText(fullResponseText);
 
         } catch (err: any) {
             console.error("Error calling chat API:", err);
@@ -195,26 +212,31 @@ export default function ChatBot({ isOpen, onClose }: ChatBotProps) {
                             <div className={`max-w-[80%] p-3 rounded-lg text-sm ${msg.role === 'user'
                                     ? 'bg-green-600/80 text-white rounded-br-none border border-green-500/30'
                                     : 'bg-gray-800/80 text-gray-200 rounded-bl-none border border-gray-600/50'
-                                }`}>
-                                {/* Render fully typed text or currently typing text */}
+                                }`}>                                {/* Render fully typed text or currently typing text */}
                                 {(msg.role === 'model' && index === currentTypingIndex)
                                     ? (
-                                        // Display text being typed with cursor inside the last line
-                                        <>
-                                            {displayedText.split('\n').map((line, i, arr) => (
-                                                <p key={i} className={`mb-1 last:mb-0 ${line === '' && i !== arr.length - 1 ? 'h-[1em]' : ''}`}>
-                                                    {line || '\u00A0'}
-                                                    {/* Add blinking cursor only to the very last line */}
-                                                    {i === arr.length - 1 && <span className="typing-cursor animate-blink">|</span>}
+                                        // Display text being typed with enhanced animation
+                                        <div className="relative">
+                                            {displayedText.split('\n').filter(line => line.trim() !== '' || displayedText.includes('\n\n')).map((line, i, arr) => (
+                                                <p key={i} className={`${i > 0 ? 'mt-2' : ''} ${line.trim() === '' ? 'h-4' : ''}`}>
+                                                    {line.trim() === '' ? '\u00A0' : line}
+                                                    {/* Add enhanced blinking cursor only to the very last line */}
+                                                    {i === arr.length - 1 && (
+                                                        <span className="typing-cursor ml-1 inline-block w-2 h-5 bg-green-400 animate-pulse opacity-80"></span>
+                                                    )}
                                                 </p>
                                             ))}
-                                        </>
+                                        </div>
                                     )
                                     : (
-                                        // Display completed text
-                                        msg.text.split('\n').map((line, i, arr) => (
-                                            <p key={i} className={`mb-1 last:mb-0 ${line === '' && i !== arr.length - 1 ? 'h-[1em]' : ''}`}>{line || '\u00A0'}</p>
-                                        ))
+                                        // Display completed text with proper formatting
+                                        <div>
+                                            {msg.text.split('\n').filter(line => line.trim() !== '' || msg.text.includes('\n\n')).map((line, i) => (
+                                                <p key={i} className={`${i > 0 ? 'mt-2' : ''} ${line.trim() === '' ? 'h-4' : ''}`}>
+                                                    {line.trim() === '' ? '\u00A0' : line}
+                                                </p>
+                                            ))}
+                                        </div>
                                     )}
                             </div>
                         </div>
@@ -263,23 +285,44 @@ export default function ChatBot({ isOpen, onClose }: ChatBotProps) {
                     <Coffee className="w-3 h-3 text-orange-400" />
                     <span>Powered by Gemini & Chai ☕</span>
                     <Zap className="w-3 h-3 text-green-400" />
-                </div>
-
-                {/* Add CSS for blinking cursor */}
+                </div>                {/* Add enhanced CSS for typing animations */}
                 <style>{`
           @keyframes blink {
             0%, 100% { opacity: 1; }
             50% { opacity: 0; }
           }
-          .typing-cursor {
-            animation: blink 1s step-end infinite;
-            font-weight: bold;
-            margin-left: 1px;
-            color: #22c55e;
+          @keyframes typing-glow {
+            0%, 100% { 
+              opacity: 0.8; 
+              box-shadow: 0 0 5px #22c55e; 
+            }
+            50% { 
+              opacity: 1; 
+              box-shadow: 0 0 10px #22c55e, 0 0 15px #22c55e; 
+            }
           }
-          /* Hide placeholder cursor when real one is visible */
-          .typing-cursor.opacity-0 {
-              opacity: 0;
+          .typing-cursor {
+            animation: typing-glow 1.2s ease-in-out infinite;
+            border-radius: 1px;
+          }
+          
+          /* Enhanced scrollbar styling */
+          .scrollbar-thin {
+            scrollbar-width: thin;
+          }
+          .scrollbar-thin::-webkit-scrollbar {
+            width: 6px;
+          }
+          .scrollbar-thin::-webkit-scrollbar-track {
+            background: rgba(55, 65, 81, 0.3);
+            border-radius: 3px;
+          }
+          .scrollbar-thin::-webkit-scrollbar-thumb {
+            background: rgba(34, 197, 94, 0.7);
+            border-radius: 3px;
+          }
+          .scrollbar-thin::-webkit-scrollbar-thumb:hover {
+            background: rgba(34, 197, 94, 0.9);
           }
         `}</style>
             </div>
